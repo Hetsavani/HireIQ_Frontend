@@ -1,0 +1,38 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1a1a2e;
+  padding: 10px 20px;
+  color: #fff;
+  position: fixed;
+  width: calc(100% - 250px);
+  left: 250px;
+  top: 0;
+}
+
+
+
+.search-bar input {
+  padding: 5px;
+  width: 300px;
+  border: none;
+  border-radius: 5px;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+}
+
+.nav-icons span {
+  margin: 0 10px;
+}
+
+.nav-icons .balance {
+  margin-right: 20px;
+}
+
+.nav-icons .user-img {
+  border-radius: 50%;
+}
