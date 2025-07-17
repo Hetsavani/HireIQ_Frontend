@@ -9,7 +9,9 @@ const CandidateLayout = () => {
       <Sidebar />
       <div className="main-section">
         <Navbar />
-        <Outlet /> 
+        <div className="main-content">
+            <Outlet />
+        </div> 
       </div>
     </div>
   );
