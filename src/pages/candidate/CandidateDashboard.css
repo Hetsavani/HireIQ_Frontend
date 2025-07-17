@@ -1,12 +1,11 @@
-.main-content {
-  margin-left: 250px;
-  flex: 1;
-  padding: 80px 20px 20px;
-  background: linear-gradient(to right, #1a1a2e, #16213e);
-  color: #fff;
-  min-height: 100vh;
-}
+.upper-part {
+  background: 
+  linear-gradient(to bottom right, rgba(106, 62, 131, 0.2), rgb(31, 24, 24));
 
+  color: white;
+  padding: 40px;
+  border-radius: 10px;
+}
 
 .main-content h1 {
   font-size: 48px;
@@ -41,10 +40,15 @@
 }
 
 .join-btn {
-  background: #0f3460;
+  background: #2c75cf;
   color: #fff;
+}
+
+.categories {
+  margin-top: 20px;
 }
 
 .categories h3 {
   margin-bottom: 10px;
 }
+
