@@ -7,6 +7,9 @@ import QuizQuestion from '../pages/candidate/QuizQuestion';
 
 
 
+import ExploreQuiz from '../pages/candidate/ExploreQuiz/ExploreQuiz';
+
+
 function CandidateRoute() {
   return (
     <Router>

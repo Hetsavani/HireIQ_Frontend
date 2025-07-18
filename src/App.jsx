@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import CandidateRoute from './routes/CandidateRoutes'
+import AdminRoutes from './routes/AdminRoutes'
 
 // import './pages/auth/Login.css'
 import Login from './pages/auth/Login';
@@ -11,6 +12,7 @@ function App() {
     <>
       {/* <Login></Login> */}
       <CandidateRoute></CandidateRoute>
+      <AdminRoutes></AdminRoutes>
     </>
   )
 }
