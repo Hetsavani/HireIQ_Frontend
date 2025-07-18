@@ -1,13 +1,12 @@
 /* ViewSubmission.css */
 .view-submission {
-  padding: 24px 0; /* Remove horizontal padding to maximize width */
+  padding: 0px 0px; /* Remove horizontal padding to maximize width */
   color: #ffffff;
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin-left: 250px;
-  width: calc(100vw - 250px); /* Use viewport width to ensure full stretch */
+  /* width: calc(100vw - 250px); Use viewport width to ensure full stretch */
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f0f23 0%, #16213e 100%);
-  position: relative;
+  /* background: linear-gradient(135deg, #0f0f23 0%, #16213e 100%); */
+  /* position: relative; */
   box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
@@ -63,7 +62,7 @@
 .rankings-table td {
   background: rgba(255, 255, 255, 0.02);
   color: #ffffff;
-  position: relative;
+  /* position: relative; */
   transition: all 0.3s ease;
 }
 

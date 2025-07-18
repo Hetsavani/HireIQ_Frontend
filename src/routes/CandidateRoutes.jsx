@@ -15,8 +15,6 @@ function CandidateRoute() {
           <Route path="dashboard" element={<CandidateDashboard />} />
           <Route path="explore" element={<ExploreQuiz/>} />
         </Route>
-        
-
       </Routes>
     </Router>
   );
