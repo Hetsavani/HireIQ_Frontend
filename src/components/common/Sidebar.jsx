@@ -22,7 +22,9 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink
-              to="/explore"
+
+              to="/candidate/explore"
+
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
               <i className="fas fa-compass" /> Explore Quizzes
