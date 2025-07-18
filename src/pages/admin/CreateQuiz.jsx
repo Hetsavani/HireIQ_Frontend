@@ -118,7 +118,7 @@ const CreateQuiz = () => {
     switch (activeTab) {
       case 'Quiz Details':
         return (
-          <div className="quiz-form">
+          <div className="rankings-table">
             <h2 className="form-title">Quiz Information</h2>
             <div className="row">
               <div className="col-md-6">
@@ -187,6 +187,8 @@ const CreateQuiz = () => {
   };
 
   return (
+    <div className="min-vh-100 p-4" style={{ backgroundColor: '#1a1a2e', color: '#fff' }}>
+
     <div className="create-quiz-container">
       <div className="tab-nav">
         <button
@@ -209,6 +211,7 @@ const CreateQuiz = () => {
         </button>
       </div>
       {renderTabContent()}
+    </div>
     </div>
   );
 };

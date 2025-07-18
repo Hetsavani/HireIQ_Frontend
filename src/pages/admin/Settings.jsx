@@ -58,7 +58,7 @@ import './CreateQuiz.css';
 
 const Settings = () => {
   return (
-    <div className="quiz-form">
+    <div className="rankings-table">
       <h2 className="form-title">Quiz Settings</h2>
       <div className="form-group">
         <label className="form-label">Time Limit (minutes)</label>

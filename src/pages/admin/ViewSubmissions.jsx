@@ -61,6 +61,7 @@ const ViewSubmission = () => {
   }
 
   return (
+    <div className="min-vh-100 p-4" style={{ backgroundColor: '#1a1a2e', color: '#fff' }}>
     <div className="view-submission">
       <h1>Rankings</h1>
       <div className="rankings-table">
@@ -87,6 +88,7 @@ const ViewSubmission = () => {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 };
