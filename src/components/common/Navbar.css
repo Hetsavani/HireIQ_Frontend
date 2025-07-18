@@ -1,0 +1,39 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f121f;
+  padding: 10px 20px;
+  color: #fff;
+  position: fixed;
+  width: calc(100% - 250px);
+  left: 250px;
+  top: 0;
+  border-bottom: 1px solid rgba(80, 80, 80, 0.3);
+}
+
+
+
+.search-bar input {
+  padding: 5px;
+  width: 300px;
+  border: none;
+  border-radius: 5px;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+}
+
+.nav-icons span {
+  margin: 0 10px;
+}
+
+.nav-icons .balance {
+  margin-right: 20px;
+}
+
+.nav-icons .user-img {
+  border-radius: 50%;
+}
