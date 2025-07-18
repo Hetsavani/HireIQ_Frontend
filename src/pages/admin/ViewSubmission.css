@@ -31,7 +31,7 @@
     0 8px 32px rgba(0, 0, 0, 0.4),
     0 2px 8px rgba(0, 212, 255, 0.1);
   border: 1px solid rgba(0, 212, 255, 0.2);
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
   width: calc(100% - 40px); /* Account for margins */
   margin-left: 20px;
   margin-right: 20px; /* Add small margins for content spacing */
@@ -181,11 +181,7 @@
 }
 
 /* Dark theme enhancements */
-@media (prefers-color-scheme: dark) {
-  .view-submission {
-    background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 100%);
-  }
-}
+
 
 /* Loading animation for future use */
 @keyframes shimmer {
@@ -198,7 +194,7 @@
 }
 
 .loading {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  /* background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); */
   background-size: 200px 100%;
   animation: shimmer 1.5s infinite;
 }

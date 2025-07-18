@@ -39,7 +39,7 @@ const Questions = () => {
   };
 
   return (
-    <div className="quiz-form">
+    <div className="rankings-table">
       <h2 className="form-title">Questions</h2>
       <div>
         {questions.map((question) => (
