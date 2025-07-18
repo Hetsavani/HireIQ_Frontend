@@ -1,0 +1,30 @@
+.admin-sidebar {
+  width: 250px;
+  background-color: #1a1a2e;
+  height: 100vh;
+  padding-top: 20px;
+  position: fixed;
+  color: #ffffff;
+}
+
+.sidebar-header {
+  padding: 10px 20px;
+  border-bottom: 1px solid #2e2e3f;
+}
+
+.nav-link {
+  color: #ffffff !important;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.nav-link:hover {
+  color: #00b4d8 !important;
+  background-color: #16213e;
+}
+
+.nav-link.active {
+  color: #00b4d8 !important; /* Blue theme */
+  background-color: #16213e;
+  font-weight: bold;
+}

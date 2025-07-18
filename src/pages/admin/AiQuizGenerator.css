@@ -1,0 +1,60 @@
+.ai-quiz-generator-container {
+  background-color: #1a1a2e;
+  padding: 20px;
+  color: #ffffff;
+  border-left: 1px solid #333;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.ai-quiz-generator-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #a9a9a9;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  background-color: #16213e;
+  border: 1px solid #333;
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group select {
+  margin-right: 10px;
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+button {
+  background-color: #4e2a84;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #3d2166;
+}
