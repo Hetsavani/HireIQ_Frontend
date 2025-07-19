@@ -1,205 +1,3 @@
-// // import React, { useState } from 'react';
-// // import './AiQuizGenerator.css';
-
-// // const AiQuizGenerator = () => {
-// //   const [formData, setFormData] = useState({
-// //     topic: '',
-// //     difficulty: 'medium',
-// //     numberOfQuestions: 5,
-// //     additionalInformation: ''
-// //   });
-
-// //   const handleChange = (e) => {
-// //     const { name, value } = e.target;
-// //     setFormData({ ...formData, [name]: value });
-// //   };
-
-// //   const handleSubmit = (e) => {
-// //     e.preventDefault();
-// //     console.log(formData);
-// //   };
-
-// //   return (
-// //     <div className="ai-quiz-generator-container">
-// //       <h2>AI Quiz Generator</h2>
-// //       <form onSubmit={handleSubmit}>
-// //         <div className="form-group">
-// //           <label>Quiz Topic</label>
-// //           <input
-// //             type="text"
-// //             name="topic"
-// //             placeholder="e.g., World History, Space Exploration, etc."
-// //             value={formData.topic}
-// //             onChange={handleChange}
-// //           />
-// //         </div>
-// //         <div className="form-group">
-// //           <label>Difficulty Level</label>
-// //           <select name="difficulty" value={formData.difficulty} onChange={handleChange}>
-// //             <option value="easy">Easy</option>
-// //             <option value="medium">Medium</option>
-// //             <option value="hard">Hard</option>
-// //           </select>
-// //           <label>Number of Questions</label>
-// //           <select name="numberOfQuestions" value={formData.numberOfQuestions} onChange={handleChange}>
-// //             <option value="5">5 Questions</option>
-// //             <option value="10">10 Questions</option>
-// //             <option value="15">15 Questions</option>
-// //           </select>
-// //         </div>
-// //         <div className="form-group">
-// //           <label>Additional Information (Optional)</label>
-// //           <textarea
-// //             name="additionalInformation"
-// //             placeholder="Any specific requirements or focus areas for the quiz"
-// //             value={formData.additionalInformation}
-// //             onChange={handleChange}
-// //           />
-// //         </div>
-// //         <button type="submit">Generate Quiz</button>
-// //       </form>
-// //     </div>
-// //   );
-// // };
-
-// // export default AiQuizGenerator;
-
-
-// import React, { useState } from 'react';
-// import ai1 from '../../assets/img/aib1.png';
-// import ai2 from '../../assets/img/aib2.png';
-// import ai3 from '../../assets/img/aib3.png';
-// import ai4 from '../../assets/img/aib4.png';
-
-// const AiQuizGenerator = () => {
-//   const [formData, setFormData] = useState({
-//     topic: '',
-//     difficulty: 'medium',
-//     numberOfQuestions: 5,
-//     additionalInformation: ''
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({ ...formData, [name]: value });
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     console.log(formData);
-//   };
-
-//   return (
-//     <div className="min-vh-100 p-4" style={{ backgroundColor: '#020817', color: '#F8FAFC' }}>
-//       <div className='d-flex'>
-//         <div className="container" style={{ maxWidth: '600px' }}>
-//           <div className="p-4 rounded shadow" style={{ backgroundColor: '#0F172A' }}>
-//             <h2 className="text-center mb-4" style={{ color: '#6366F1' }}>AI Quiz Generator</h2>
-//             <form onSubmit={handleSubmit}>
-//               <div className="mb-3">
-//                 <label className="form-label" style={{ color: '#F8FAFC' }}>Quiz Topic</label>
-//                 <input
-//                   type="text"
-//                   name="topic"
-//                   className="form-control"
-//                   style={{ backgroundColor: '#1E293B', color: '#F8FAFC', border: 'none' }}
-//                   placeholder="e.g., World History, Space Exploration, etc."
-//                   value={formData.topic}
-//                   onChange={handleChange}
-//                 />
-//               </div>
-
-//               <div className="mb-3">
-//                 <label className="form-label" style={{ color: '#F8FAFC' }}>Difficulty Level</label>
-//                 <select
-//                   name="difficulty"
-//                   className="form-select"
-//                   style={{ backgroundColor: '#1E293B', color: '#F8FAFC', border: 'none' }}
-//                   value={formData.difficulty}
-//                   onChange={handleChange}
-//                 >
-//                   <option value="easy">Easy</option>
-//                   <option value="medium">Medium</option>
-//                   <option value="hard">Hard</option>
-//                 </select>
-//               </div>
-
-//               <div className="mb-3">
-//                 <label className="form-label" style={{ color: '#F8FAFC' }}>Number of Questions</label>
-//                 <select
-//                   name="numberOfQuestions"
-//                   className="form-select"
-//                   style={{ backgroundColor: '#1E293B', color: '#F8FAFC', border: 'none' }}
-//                   value={formData.numberOfQuestions}
-//                   onChange={handleChange}
-//                 >
-//                   <option value="5">5 Questions</option>
-//                   <option value="10">10 Questions</option>
-//                   <option value="15">15 Questions</option>
-//                 </select>
-//               </div>
-
-//               <div className="mb-3">
-//                 <label className="form-label" style={{ color: '#F8FAFC' }}>Additional Information (Optional)</label>
-//                 <textarea
-//                   name="additionalInformation"
-//                   className="form-control"
-//                   style={{ backgroundColor: '#1E293B', color: '#F8FAFC', border: 'none' }}
-//                   rows={3}
-//                   placeholder="Any specific requirements or focus areas for the quiz"
-//                   value={formData.additionalInformation}
-//                   onChange={handleChange}
-//                 ></textarea>
-//               </div>
-
-//               <div className="text-end">
-//                 <button
-//                   type="submit"
-//                   className="btn"
-//                   style={{ backgroundColor: '#6366F1', color: '#fff' }}
-//                 >
-//                   Generate Quiz
-//                 </button>
-//               </div>
-//             </form>
-//           </div>
-//         </div>
-//         <div className="container py-4">
-//           <div className="d-flex flex-wrap justify-content-center align-items-start">
-//             <img
-//               src={ai1}
-//               alt="AI 1"
-//               className="rounded shadow"
-//               style={{ width: '200px', height: 'auto', transform: 'rotate(-2deg)' , marginTop: '150px'}}
-//             />
-//             <img
-//               src={ai2}
-//               alt="AI 2"
-//               className="rounded shadow"
-//               style={{ width: '230px', height: 'auto', transform: 'rotate(3deg)', marginTop: '0px' }}
-//             />
-//             <img
-//               src={ai3}
-//               alt="AI 3"
-//               className="rounded shadow"
-//               style={{ width: '180px', height: 'auto', transform: 'rotate(-5deg)', marginTop: '0px' }}
-//             />
-//             <img
-//               src={ai4}
-//               alt="AI 4"
-//               className="rounded shadow"
-//               style={{ width: '210px', height: 'auto'   , transform: 'rotate(2deg)', marginTop: '0px' }}
-//             />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AiQuizGenerator;
-
-
 import React, { useState } from 'react';
 import './AiQuizGenerator.css';
 
@@ -209,101 +7,313 @@ const AiQuizGenerator = () => {
     topic: '',
     difficulty: 'medium',
     numberOfQuestions: 5,
-    timeLimit: 30,
-    requiredPercentage: 60,
+    timeLimit: '',
     additionalInformation: ''
   });
 
+  const [activeTab, setActiveTab] = useState('generator'); // 'generator' | 'editor'
+  const [showQuestionList, setShowQuestionList] = useState(false);
+
+  const [editorTab, setEditorTab] = useState('details'); // 'details' | 'questions' | 'settings'
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    setShowQuestionList(true);
+    setActiveTab('generator');
+  };
+
+  const questionList = Array.from({ length: formData.numberOfQuestions }, (_, i) => ({
+    questionType: 'Multiple Choice',
+    questionText: `Sample Question ${i + 1} on ${formData.topic || 'General Knowledge'}?`,
+    options: ['Option A', 'Option B', 'Option C', 'Option D'],
+    answer: 'Option A',
+    difficulty: formData.difficulty
+  }));
+
+  const [editableQuestions, setEditableQuestions] = useState(questionList);
+  const [expandedIndex, setExpandedIndex] = useState(null);
+  const toggleExpand = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
+  const updateQuestion = (index, field, value) => {
+    const updated = [...editableQuestions];
+    updated[index][field] = value;
+    setEditableQuestions(updated);
+  };
+
+  const updateOption = (qIndex, oIndex, value) => {
+    const updated = [...editableQuestions];
+    updated[qIndex].options[oIndex] = value;
+    setEditableQuestions(updated);
+  };
+
+  const addQuestion = () => {
+    setEditableQuestions(prev => [
+      ...prev,
+      {
+        questionText: '',
+        options: ['', '', '', ''],
+        answer: '',
+        explanation: '',
+        questionType: 'Multiple Choice',
+        difficulty: formData.difficulty,
+      },
+    ]);
+  };
+  const deleteQuestion = (index) => {
+    const updated = [...editableQuestions];
+    updated.splice(index, 1);
+    setEditableQuestions(updated);
+  };
+  const moveQuestion = (from, to) => {
+    if (to < 0 || to >= editableQuestions.length) return;
+    const updated = [...editableQuestions];
+    const [moved] = updated.splice(from, 1);
+    updated.splice(to, 0, moved);
+    setEditableQuestions(updated);
+  };
+  const renderEditorTabContent = () => {
+    switch (editorTab) {
+      case 'details':
+        return (
+          <div className="quiz-box">
+            <h2 className="quiz-heading">Quiz Information</h2>
+
+            <label className="quiz-label">Quiz Title</label>
+            <input className="quiz-input" value={formData.title} readOnly />
+
+            <label className="quiz-label">Topic</label>
+            <input className="quiz-input" value={formData.topic} readOnly />
+
+            <label className="quiz-label">Difficulty Level</label>
+            <input className="quiz-input" value={formData.difficulty} readOnly />
+
+            <label className="quiz-label">Number of Questions</label>
+            <input className="quiz-input" value={formData.numberOfQuestions} readOnly />
+
+            <label className="quiz-label">Time Limit (mins)</label>
+            <input className="quiz-input" value={formData.timeLimit} readOnly />
+
+            <label className="quiz-label">Additional Information</label>
+            <textarea className="quiz-textarea" value={formData.additionalInformation} readOnly />
+          </div>
+        );
+
+      case 'questions':
+        return (
+          <div className="question-editor">
+            <div className="question-header">
+              <h3>Questions</h3>
+              <button className="add-btn" onClick={addQuestion}>➕ Add Question</button>
+            </div>
+            {editableQuestions.map((q, i) => (
+              <div key={i} className={`question-item ${expandedIndex === i ? 'expanded' : ''}`}>
+                <div className="question-title" onClick={() => toggleExpand(i)}>
+                  <strong>Question {i + 1}</strong>
+                  <div className="question-actions">
+                    <button onClick={(e) => { e.stopPropagation(); moveQuestion(i, i - 1); }}>⬆</button>
+                    <button onClick={(e) => { e.stopPropagation(); moveQuestion(i, i + 1); }}>⬇</button>
+                    <button onClick={(e) => { e.stopPropagation(); deleteQuestion(i); }}>🗑</button>
+                  </div>
+                </div>
+
+                {expandedIndex === i && (
+                  <div className="question-body">
+                    <label>Question Text</label>
+                    <textarea value={q.questionText} onChange={(e) => updateQuestion(i, 'questionText', e.target.value)} />
+
+                    <label>Options</label>
+                    {q.options.map((opt, idx) => (
+                      <div key={idx} className="option-row">
+                        <input
+                          type="radio"
+                          name={`answer-${i}`}
+                          checked={q.answer === opt}
+                          onChange={() => updateQuestion(i, 'answer', opt)}
+                        />
+                        <input
+                          type="text"
+                          value={opt}
+                          onChange={(e) => updateOption(i, idx, e.target.value)}
+                        />
+                      </div>
+                    ))}
+
+                    <label>Explanation (shown after answering)</label>
+                    <textarea
+                      value={q.explanation || ''}
+                      onChange={(e) => updateQuestion(i, 'explanation', e.target.value)}
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        );
+
+      case 'settings':
+        return (
+          <div className="quiz-box">
+            <h2 className="quiz-heading">Settings</h2>
+            <p>Display quiz configuration options here.</p>
+          </div>
+        );
+
+      default:
+        return <h1>Hello</h1>;
+    }
   };
 
   return (
-    <div className="ai-quiz-generator-container">
-      <h2>AI Quiz Generator</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Quiz Title</label>
-          <input
-            type="text"
-            name="title"
-            placeholder="Enter quiz title"
-            value={formData.title}
-            onChange={handleChange}
-            required
-          />
+    <div className="quiz-container">
+
+      {/* === Tabs === */}
+      <div className="quiz-tabs">
+        <button
+          className={`quiz-tab ${activeTab === 'generator' ? 'active' : ''}`}
+          onClick={() => setActiveTab('generator')}
+        >
+          AI Generator
+        </button>
+        <button
+          className={`quiz-tab ${showQuestionList ? '' : 'disabled'} ${activeTab === 'editor' ? 'active' : ''}`}
+          onClick={() => showQuestionList && setActiveTab('editor')}
+        >
+          Edit Generated Quiz
+        </button>
+      </div>
+
+      {/* === Generator Form === */}
+      {activeTab === 'generator' && (
+        <>
+          <form className="quiz-box" onSubmit={handleSubmit}>
+            <h2 className="quiz-heading">AI Quiz Generator</h2>
+
+            <label className="quiz-label">Quiz Title</label>
+            <input
+              className="quiz-input"
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              placeholder="e.g., Sports Trivia Challenge"
+            />
+
+            <label className="quiz-label">Quiz Topic</label>
+            <input
+              className="quiz-input"
+              type="text"
+              name="topic"
+              value={formData.topic}
+              onChange={handleChange}
+              placeholder="e.g., Space Exploration"
+            />
+
+            <div className="quiz-row">
+              <div className="quiz-col">
+                <label className="quiz-label">Difficulty Level</label>
+                <select
+                  className="quiz-select"
+                  name="difficulty"
+                  value={formData.difficulty}
+                  onChange={handleChange}
+                >
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+              </div>
+
+              <div className="quiz-col">
+                <label className="quiz-label">Number of Questions</label>
+                <select
+                  className="quiz-select"
+                  name="numberOfQuestions"
+                  value={formData.numberOfQuestions}
+                  onChange={handleChange}
+                >
+                  <option value={5}>5</option>
+                  <option value={10}>10</option>
+                  <option value={15}>15</option>
+                </select>
+              </div>
+            </div>
+
+            <label className="quiz-label">Time Limit (in minutes)</label>
+            <input
+              className="quiz-input"
+              type="number"
+              name="timeLimit"
+              value={formData.timeLimit}
+              onChange={handleChange}
+              placeholder="e.g., 30"
+            />
+
+            <label className="quiz-label">Additional Information (Optional)</label>
+            <textarea
+              className="quiz-textarea"
+              name="additionalInformation"
+              value={formData.additionalInformation}
+              onChange={handleChange}
+              placeholder="Any specific requirements or focus areas for the quiz"
+            ></textarea>
+
+            <button type="submit" className="quiz-generate-btn">Generate Quiz</button>
+          </form>
+
+          {showQuestionList && (
+            <div className="quiz-results">
+              <h3 className="quiz-success">Quiz Generated Successfully!</h3>
+              <p className="quiz-message">
+                Your quiz on "{formData.topic}" has been generated with {formData.numberOfQuestions} {formData.difficulty} difficulty questions.
+                <br />
+                Click the "Edit Generated Quiz" tab above to review and customize your quiz before publishing.
+              </p>
+
+              <h4 className="quiz-subheading">Generated Questions:</h4>
+              {questionList.map((q, idx) => (
+                <div key={idx} className="quiz-card">
+                  <div className="quiz-card-header">
+                    <strong>Q{idx + 1}: {q.questionText}</strong>
+                    <span className={`badge badge-${q.difficulty}`}>{q.difficulty}</span>
+                  </div>
+                  <ul className="quiz-options">
+                    {q.options.map((opt, i) => (
+                      <li key={i}>{opt}</li>
+                    ))}
+                  </ul>
+                  <p className="quiz-answer"><strong>Answer:</strong> {q.answer}</p>
+                  <p className="quiz-type"><strong>Type:</strong> {q.questionType}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      )}
+
+      {/* === Edit Quiz View === */}
+      {activeTab === 'editor' && (
+        <div className="quiz-edit-section">
+          <div className="quiz-tabs inner-tabs">
+            <button className={`quiz-tab ${editorTab === 'details' ? 'active' : ''}`} onClick={() => setEditorTab('details')}>Quiz Details</button>
+            <button className={`quiz-tab ${editorTab === 'questions' ? 'active' : ''}`} onClick={() => setEditorTab('questions')}>Questions</button>
+            </div>
+
+          {renderEditorTabContent()}
         </div>
-        <div className="form-group">
-          <label>Quiz Topic</label>
-          <input
-            type="text"
-            name="topic"
-            placeholder="e.g., World History, Space Exploration, etc."
-            value={formData.topic}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Difficulty Level</label>
-          <select name="difficulty" value={formData.difficulty} onChange={handleChange}>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Number of Questions</label>
-          <select name="numberOfQuestions" value={formData.numberOfQuestions} onChange={handleChange}>
-            <option value="5">5 Questions</option>
-            <option value="10">10 Questions</option>
-            <option value="15">15 Questions</option>
-            <option value="20">20 Questions</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Time Limit (minutes)</label>
-          <input
-            type="number"
-            name="timeLimit"
-            min="1"
-            max="120"
-            value={formData.timeLimit}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Required Passing Percentage</label>
-          <input
-            type="number"
-            name="requiredPercentage"
-            min="1"
-            max="100"
-            value={formData.requiredPercentage}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Additional Information (Optional)</label>
-          <textarea
-            name="additionalInformation"
-            placeholder="Any specific requirements or focus areas for the quiz"
-            value={formData.additionalInformation}
-            onChange={handleChange}
-          />
-        </div>
-        <button className='btnAiQuizGenerator' type="submit">Generate Quiz</button>
-      </form>
+      )}
+
+
     </div>
   );
 };
+
 
 export default AiQuizGenerator;
