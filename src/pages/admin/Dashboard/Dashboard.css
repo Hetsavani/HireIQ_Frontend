@@ -1,16 +1,21 @@
 .custom-table {
-  background-color: #1a1a2e !important;
-  color: #aaa !important;
+  background-color: #0F172A !important;
+  color: #F8FAFC !important;
 }
 
 .custom-table th {
-  background-color: #0f3460 !important;
-  color: #fff !important;
-  border-color: #333 !important;
+  background-color: #1E293B !important;
+  color: #F8FAFC !important;
+  border-color: #6366F1 !important;
 }
 
 .custom-table td {
-  background-color: #1a1a2e !important;
-  color: #aaa !important;
-  border-color: #333 !important;
+  background-color: #0F172A !important;
+  color: #94A3B8 !important;
+  border-color: #1E293B !important;
+}
+
+.custom-table tr:hover td {
+  background-color: #1E293B !important;
+  color: #F8FAFC !important;
 }

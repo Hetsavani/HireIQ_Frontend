@@ -22,53 +22,49 @@ export default function Dashboard() {
   const totalParticipants = quizData.reduce((sum, q) => sum + q.participants, 0);
 
   return (
-    <div className="min-vh-100 p-4" style={{ backgroundColor: '#1a1a2e', color: '#fff' }}>
-      {/* <h1 className="mb-4 text-center" style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ffffff' }}>
-        Quiz Admin Dashboard
-      </h1> */}
-
-      {/* Stats Summary */}
+    <div className="min-vh-100 p-4" style={{ backgroundColor: '#020817', color: '#F8FAFC' }}>
       <div className="row g-4 mb-4">
         <div className="col-md-4">
-          <div className="p-4 rounded-3 shadow" style={{ backgroundColor: '#16213e' }}>
-            <h5 style={{ color: '#aaa' }}>Total Quizzes</h5>
-            <p className="fs-3 fw-bold text-white">{quizData.length}</p>
+          <div className="p-4 rounded-3 shadow" style={{ backgroundColor: '#0F172A' }}>
+            <h5 style={{ color: '#94A3B8' }}>Total Quizzes</h5>
+            <p className="fs-3 fw-bold" style={{ color: '#F8FAFC' }}>{quizData.length}</p>
           </div>
         </div>
         <div className="col-md-4">
-          <div className="p-4 rounded-3 shadow" style={{ backgroundColor: '#16213e' }}>
-            <h5 style={{ color: '#aaa' }}>Total Participants</h5>
-            <p className="fs-3 fw-bold text-white">{totalParticipants}</p>
+          <div className="p-4 rounded-3 shadow" style={{ backgroundColor: '#0F172A' }}>
+            <h5 style={{ color: '#94A3B8' }}>Total Participants</h5>
+            <p className="fs-3 fw-bold" style={{ color: '#F8FAFC' }}>{totalParticipants}</p>
           </div>
         </div>
         <div className="col-md-4">
-          <div className="p-4 rounded-3 shadow" style={{ backgroundColor: '#16213e' }}>
-            <h5 style={{ color: '#aaa' }}>Active Users</h5>
-            <p className="fs-3 fw-bold text-white">134</p>
+          <div className="p-4 rounded-3 shadow" style={{ backgroundColor: '#0F172A' }}>
+            <h5 style={{ color: '#94A3B8' }}>Active Users</h5>
+            <p className="fs-3 fw-bold" style={{ color: '#F8FAFC' }}>134</p>
           </div>
         </div>
       </div>
 
       {/* Graph Section */}
-      <div className="p-4 rounded-3 shadow mb-4" style={{ backgroundColor: '#16213e'}}>
-        <h4 className="mb-3" style={{ color: '#aaa' }}>Last 10 Quiz Participation</h4>
+      <div className="p-4 rounded-3 shadow mb-4" style={{ backgroundColor: '#0F172A' }}>
+        <h4 className="mb-3" style={{ color: '#94A3B8' }}>Last 10 Quiz Participation</h4>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={quizData}>
-            <CartesianGrid stroke="#333" />
-            <XAxis dataKey="title" stroke="#fff" />
-            <YAxis stroke="#fff" />
+            <CartesianGrid stroke="#1E293B" />
+            <XAxis dataKey="title" stroke="#F8FAFC" />
+            <YAxis stroke="#F8FAFC" />
             <Tooltip
-              contentStyle={{ backgroundColor: "#fff", borderColor: "#aaa", color: "#4e2a84" }}
+              contentStyle={{ backgroundColor: "#1E293B", borderColor: "#6366F1", color: "#F8FAFC" }}
+              labelStyle={{ color: '#F8FAFC' }}
+              itemStyle={{ color: '#F8FAFC' }}
             />
-            <Line type="monotone" dataKey="participants" stroke="#4e2a84" strokeWidth={2} />
+            <Line type="monotone" dataKey="participants" stroke="#6366F1" strokeWidth={2} />
           </LineChart>
         </ResponsiveContainer>
       </div>
 
       {/* Recent Quizzes */}
-      <div className="p-4 rounded-3 shadow" style={{ backgroundColor: '#16213e' }}>
-        <h4 className="mb-3" style={{ color: '#aaa' }}>Recent Quizzes</h4>
-
+      <div className="p-4 rounded-3 shadow" style={{ backgroundColor: '#0F172A' }}>
+        <h4 className="mb-3" style={{ color: '#94A3B8' }}>Recent Quizzes</h4>
         <div className="table-responsive text-center">
           <table className="table custom-table">
             <thead>
@@ -92,7 +88,6 @@ export default function Dashboard() {
           </table>
         </div>
       </div>
-
     </div>
   );
 }
