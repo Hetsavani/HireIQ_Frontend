@@ -14,23 +14,11 @@ import ForgotPassword from '../pages/auth/ForgotPassword';
 
 function CandidateRoute() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/candidate" element={<CandidateLayout />}>
-          <Route index element={<CandidateDashboard />} />
-          <Route path="dashboard" element={<CandidateDashboard />} />
-          <Route path="ExploreQuiz" element={<ExploreQuiz />}/>
-          <Route path="ExploreQuiz/QuizById" element={<QuizById />} />
-          <Route path="quizQuestion" element={<QuizQuestion />} />
+    <>
           
-          <Route path="quizpage" element={<QuizPage />} />
-          <Route path="completedQuizzes" element={<CompletedQuizzes />} />
 
-        </Route> 
-        <Route path="/login" element={<LoginNew />}></Route>
-        <Route path="/ForgotPassword" element={<ForgotPassword />}></Route>
-      </Routes>
-    </Router>
+        
+      </>
   );
 }
 
