@@ -7,6 +7,7 @@ import AdminLayout from '../layouts/AdminLayout';
 import Dashboard from '../pages/admin/Dashboard/Dashboard';
 import QuizResult from '../pages/admin/QuizResult';
 
+
 function AdminRoutes() {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ function AdminRoutes() {
         <Route path="view-submissions" element={<ViewSubmission />} />
         <Route path="ai-quiz-generator" element={<AiQuizGenerator />} />
         <Route path="quiz-result" element={<QuizResult />} />
+      
       </Route>
     </Routes>
     </BrowserRouter>

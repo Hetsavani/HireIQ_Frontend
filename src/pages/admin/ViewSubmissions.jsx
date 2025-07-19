@@ -1,73 +1,205 @@
 import React, { useState, useEffect } from 'react';
+import { Crown, Star, Download, Mail } from 'lucide-react';
 import './ViewSubmission.css';
 
-// Mock data to simulate backend response (to be replaced with API call)
-const mockData = [
-  { name: 'Alex Johnson', country: 'United States', streak: '6 streak', score: '9,850', level: '7.8' },
-  { name: 'Sarah Williams', country: 'Canada', streak: '8 streak', score: '8,720', level: '2.65' },
-  { name: 'Michael Brown', country: 'United Kingdom', streak: '8 streak', score: '7,640', level: '2.59' },
-  { name: 'Emily Davis', country: 'Australia', streak: '4 streak', score: '6,980', level: '2.52' },
-  { name: 'David Wilson', country: 'Germany', streak: '3 streak', score: '6,540', level: '2.46' },
-  { name: 'Jessica Taylor', country: 'France', streak: '5 streak', score: '5,920', level: '2.45' },
-  { name: 'Ryan Martinez', country: 'Spain', streak: '', score: '5,480', level: '2.41' },
-  { name: 'Olivia Anderson', country: 'Italy', streak: '', score: '5,120', level: '2.38' },
-];
+const Leader_VS = ({ users }) => {
+  const defaultUsers = [
+    {
+      id: 1,
+      name: "Sarah Williams",
+      points: "8,720 pts",
+      tier: "Platinum",
+      rating: 65,
+      position: 2,
+      image: "https://randomuser.me/api/portraits/women/44.jpg",
+      email: "sarah.williams@example.com",
+      about: "Full-stack developer with 5 years of experience in React and Node.js",
+      resume: "https://example.com/resumes/sarah_williams.pdf"
+    },
+    {
+      id: 2,
+      name: "Alex Johnson",
+      points: "9,850 pts",
+      tier: "Diamond",
+      rating: 78,
+      position: 1,
+      image: "https://randomuser.me/api/portraits/men/32.jpg",
+      email: "alex.johnson@example.com",
+      about: "Senior UX Designer specializing in accessibility and user research",
+      resume: "https://example.com/resumes/alex_johnson.pdf"
+    },
+    {
+      id: 3,
+      name: "Michael Brown",
+      points: "7,640 pts",
+      tier: "Gold",
+      rating: 59,
+      position: 3,
+      image: "https://randomuser.me/api/portraits/men/75.jpg",
+      email: "michael.brown@example.com",
+      about: "Data scientist with expertise in machine learning and Python",
+      resume: "https://example.com/resumes/michael_brown.pdf"
+    }
+  ];
+
+  const userData = users || defaultUsers;
+
+  const getTierColor_VS = (tier) => {
+    switch (tier) {
+      case 'Diamond': return '#6366f1';
+      case 'Platinum': return '#3B82F6';
+      case 'Gold': return '#EAB308';
+      default: return '#64748b';
+    }
+  };
+
+  const getBorderColor_VS = (position) => {
+    switch (position) {
+      case 1: return '#EAB308';
+      case 2: return '#94A3B8';
+      case 3: return '#A855F7';
+      default: return '#94A3B8';
+    }
+  };
+
+  return (
+    <div className="leader_section_VS">
+      <div className="leader_container_VS">
+        <div className="leader_grid_VS">
+          {userData.map((user) => (
+            <div
+              key={user.id}
+              className={`user_card_VS ${user.position === 1 ? 'winner_VS' : ''}`}
+            >
+              {user.position === 1 && (
+                <div className="crown_container_VS">
+                  <Crown className="crown_icon_VS" />
+                </div>
+              )}
+
+              <div
+                className="profile_image_VS"
+                style={{ borderColor: getBorderColor_VS(user.position) }}
+              >
+                <img src={user.image} alt={user.name} />
+                {user.position <= 3 && (
+                  <div className="position_badge_VS">
+                    {user.position}
+                  </div>
+                )}
+              </div>
+
+              <h3 className="user_name_VS">{user.name}</h3>
+              <p className="user_points_VS">{user.points}</p>
+
+              <div className="user_stats_VS">
+                <div
+                  className="tier_badge_VS"
+                  style={{ backgroundColor: getTierColor_VS(user.tier) }}
+                >
+                  {user.tier}
+                </div>
+
+                <div className="rating_VS">
+                  <Star className="star_icon_VS" />
+                  <span>{user.rating}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const ViewSubmission = () => {
   const [rankings, setRankings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [hoveredUser, setHoveredUser] = useState(null);
+  const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
+  const [popupVisible, setPopupVisible] = useState(false);
 
   useEffect(() => {
-    // Simulate API call with mock data (replace with actual API call)
-    const fetchRankings = async () => {
-      try {
-        // Example API call (uncomment and configure when backend is ready)
-        /*
-        const response = await fetch('/api/rankings');
-        if (!response.ok) {
-          throw new Error('Failed to fetch rankings');
-        }
-        const data = await response.json();
-        setRankings(data);
-        */
-        setRankings(mockData); // Using mock data for now
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
+    const mockData = [
+      { 
+        name: 'Alex Johnson', 
+        country: 'United States', 
+        streak: '6 streak', 
+        score: '9,850', 
+        level: '7.8',
+        email: 'alex.johnson@example.com',
+        about: 'Senior UX Designer specializing in accessibility and user research',
+        resume: 'https://example.com/resumes/alex_johnson.pdf',
+        photo: 'https://randomuser.me/api/portraits/men/32.jpg'
+      },
+      { 
+        name: 'Sarah Williams', 
+        country: 'Canada', 
+        streak: '8 streak', 
+        score: '8,720', 
+        level: '2.65',
+        email: 'sarah.williams@example.com',
+        about: 'Full-stack developer with 5 years of experience in React and Node.js',
+        resume: 'https://example.com/resumes/sarah_williams.pdf',
+        photo: 'https://randomuser.me/api/portraits/women/44.jpg'
+      },
+      { 
+        name: 'Michael Brown', 
+        country: 'United Kingdom', 
+        streak: '8 streak', 
+        score: '7,640', 
+        level: '2.59',
+        email: 'michael.brown@example.com',
+        about: 'Data scientist with expertise in machine learning and Python',
+        resume: 'https://example.com/resumes/michael_brown.pdf',
+        photo: 'https://randomuser.me/api/portraits/men/75.jpg'
       }
-    };
+    ];
 
-    fetchRankings();
+    setRankings(mockData);
+    setLoading(false);
   }, []);
+
+  const handleNameHover = (user, event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setHoveredUser(user);
+    setPopupPosition({
+      x: rect.left + (rect.width / 2) - 160, // Center popup horizontally
+      y: rect.bottom + 10 // Position below the name cell
+    });
+    setPopupVisible(true);
+  };
+
+  const handlePopupLeave = () => {
+    setPopupVisible(false);
+  };
 
   if (loading) {
     return (
-      <div className="view-submission">
-        <h1>Rankings</h1>
-        <div className="loading-message">Loading rankings...</div>
+      <div className="leaderboard_view_VS">
+        <div className="loading_message_VS">Loading rankings...</div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="view-submission">
-        <h1>Rankings</h1>
-        <div className="error-message">Error: {error}</div>
+      <div className="leaderboard_view_VS">
+        <div className="error_message_VS">Error: {error}</div>
       </div>
     );
   }
 
   return (
-    <div className="min-vh-100 p-4" style={{ backgroundColor: '#020817', color: '#F8FAFC' }}>
-    <div className="view-submission">
-      <h1>Rankings</h1>
-      <div className="rankings-table">
+    <div className="leaderboard_view_VS">
+      <Leader_VS />
+      <div className="rankings_table_VS">
         <table>
           <thead>
             <tr>
+              <th>Rank</th>
               <th>User</th>
               <th>Country</th>
               <th>Streak</th>
@@ -77,10 +209,20 @@ const ViewSubmission = () => {
           </thead>
           <tbody>
             {rankings.map((user, index) => (
-              <tr key={index}>
-                <td>{user.name}</td>
+              <tr key={index} className="table_row_VS">
+                <td>{index + 1}</td>
+                <td>
+                  <div 
+                    className="user_cell_VS"
+                    onMouseEnter={(e) => handleNameHover(user, e)}
+                    onMouseLeave={() => setPopupVisible(false)}
+                  >
+                    <img src={user.photo} alt={user.name} className="user_avatar_VS" />
+                    {user.name}
+                  </div>
+                </td>
                 <td>{user.country}</td>
-                <td>{user.streak && <span className="streak">{user.streak}</span>}</td>
+                <td>{user.streak && <span className="streak_VS">{user.streak}</span>}</td>
                 <td>{user.score}</td>
                 <td>{user.level}</td>
               </tr>
@@ -88,92 +230,44 @@ const ViewSubmission = () => {
           </tbody>
         </table>
       </div>
-    </div>
+
+      {hoveredUser && popupVisible && (
+        <div 
+          className="user_popup_VS"
+          style={{
+            left: `${popupPosition.x}px`,
+            top: `${popupPosition.y}px`,
+            transform: 'translateX(0)' // Ensure no horizontal translation
+          }}
+          onMouseEnter={() => setPopupVisible(true)}
+          onMouseLeave={handlePopupLeave}
+        >
+          <div className="popup_header_VS">
+            <img src={hoveredUser.photo} alt={hoveredUser.name} className="popup_avatar_VS" />
+            <h3>{hoveredUser.name}</h3>
+          </div>
+          <div className="popup_content_VS">
+            <div className="popup_field_VS">
+              <Mail className="popup_icon_VS" />
+              <span>{hoveredUser.email}</span>
+            </div>
+            <div className="popup_field_VS">
+              <p className="popup_about_VS">{hoveredUser.about}</p>
+            </div>
+            <a 
+              href={hoveredUser.resume} 
+              className="resume_link_VS"
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Download className="popup_icon_VS" />
+              Download Resume
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default ViewSubmission;
-
-
-
-
-
-
-// import React, { useState, useEffect } from 'react';
-// import './ViewSubmission.css';
-
-// const mockData = [
-//   { name: 'Alex Johnson', country: 'United States', streak: '6 streak', score: '9,850', level: '7.8' },
-//   { name: 'Sarah Williams', country: 'Canada', streak: '8 streak', score: '8,720', level: '2.65' },
-//   { name: 'Michael Brown', country: 'United Kingdom', streak: '8 streak', score: '7,640', level: '2.59' },
-//   { name: 'Emily Davis', country: 'Australia', streak: '4 streak', score: '6,980', level: '2.52' },
-//   { name: 'David Wilson', country: 'Germany', streak: '3 streak', score: '6,540', level: '2.46' },
-//   { name: 'Jessica Taylor', country: 'France', streak: '5 streak', score: '5,920', level: '2.45' },
-//   { name: 'Ryan Martinez', country: 'Spain', streak: '', score: '5,480', level: '2.41' },
-//   { name: 'Olivia Anderson', country: 'Italy', streak: '', score: '5,120', level: '2.38' },
-// ];
-
-// const ViewSubmission = () => {
-//   const [rankings, setRankings] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     setRankings(mockData);
-//     setLoading(false);
-//   }, []);
-
-//   if (loading) {
-//     return <div className="text-center text-secondary p-5">Loading rankings...</div>;
-//   }
-
-//   if (error) {
-//     return <div className="text-center text-danger p-5">Error: {error}</div>;
-//   }
-
-//   return (
-//     <div className="min-vh-100 p-4" style={{ backgroundColor: '#020817', color: '#F8FAFC' }}>
-//       <div className="container bg-dark rounded p-4" style={{ backgroundColor: '#0F172A' }}>
-//         <h1 className="text-center mb-4" style={{ color: '#6366F1' }}>Rankings</h1>
-//         <div className="table-responsive">
-//           <table className="table table-dark table-hover table-bordered align-middle" style={{ backgroundColor: '#1E293B' }}>
-//             <thead style={{ backgroundColor: '#0F172A', color: '#94A3B8' }}>
-//               <tr>
-//                 <th>User</th>
-//                 <th>Country</th>
-//                 <th>Streak</th>
-//                 <th>Score</th>
-//                 <th>Level</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {rankings.map((user, index) => (
-//                 <tr key={index} style={{ backgroundColor: '#1E293B', color: '#F8FAFC' }}>
-//                   <td>
-//                     {index === 0 && '🥇 '}
-//                     {index === 1 && '🥈 '}
-//                     {index === 2 && '🥉 '}
-//                     {user.name}
-//                   </td>
-//                   <td>{user.country}</td>
-//                   <td>
-//                     {user.streak && (
-//                       <span className="badge rounded-pill text-bg-primary" style={{ backgroundColor: '#6366F1' }}>
-//                         {user.streak}
-//                       </span>
-//                     )}
-//                   </td>
-//                   <td>{user.score}</td>
-//                   <td>{user.level}</td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ViewSubmission;

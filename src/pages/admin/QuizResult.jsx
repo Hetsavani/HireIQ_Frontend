@@ -1,3 +1,4 @@
+
 import React from 'react';
 import './QuizResult.css';
 
@@ -76,6 +77,16 @@ const QuizResult = () => {
     return Array.isArray(selected) ? selected.includes(option) : selected === option;
   };
 
+  const getOptionClass = (option, selected, correctAnswer, type) => {
+    const isSelected = isChecked(type, option, selected);
+    const isCorrect = Array.isArray(correctAnswer) ? correctAnswer.includes(option) : correctAnswer === option;
+    const isIncorrect = isSelected && !isCorrect && type === 'incorrect';
+
+    return `quiz-option-label_quizResult ${isSelected ? 'selected_quizResult' : ''} ${
+      isCorrect ? 'correct-answer_quizResult' : ''
+    } ${isIncorrect ? 'incorrect-answer_quizResult' : ''}`.trim();
+  };
+
   return (
     <div className="quiz-container_quizResult">
       <div className="quiz-header-container_quizResult">
@@ -118,11 +129,11 @@ const QuizResult = () => {
 
             <div className="quiz-options_quizResult">
               {q.options.map((opt, index) => (
-                <label className="quiz-option-label_quizResult" key={index}>
+                <label className={getOptionClass(opt, q.selected, q.correctAnswer, q.type)} key={index}>
                   <input
                     type={q.typeInput}
                     disabled
-                    checked={isChecked(q.type, opt, q.selected)}
+                    checked={isChecked(q.typeInput, opt, q.selected)}
                     readOnly
                   />
                   {opt}
