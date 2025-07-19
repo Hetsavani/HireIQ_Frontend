@@ -8,6 +8,7 @@ import QuizQuestion from '../pages/candidate/QuizQuestion';
 
 
 import ExploreQuiz from '../pages/candidate/ExploreQuiz/ExploreQuiz';
+import LoginNew from '../pages/auth/Login';
 
 
 function CandidateRoute() {
@@ -19,9 +20,10 @@ function CandidateRoute() {
           <Route path="dashboard" element={<CandidateDashboard />} />
           <Route path="quizById" element={<QuizById />} />
           <Route path="quizQuestion" element={<QuizQuestion />} />
-
+          
 
         </Route>
+        <Route  path='login' element={<LoginNew/>}/>
       </Routes>
     </Router>
   );
