@@ -22,7 +22,7 @@ function CandidateRoute() {
           <Route path="ExploreQuiz" element={<ExploreQuiz />}/>
           <Route path="ExploreQuiz/QuizById" element={<QuizById />} />
           <Route path="quizQuestion" element={<QuizQuestion />} />
-
+          
           <Route path="quizpage" element={<QuizPage />} />
           <Route path="completedQuizzes" element={<CompletedQuizzes />} />
 
