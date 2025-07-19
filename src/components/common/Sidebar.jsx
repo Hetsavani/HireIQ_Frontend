@@ -22,8 +22,7 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink
-
-              to="/candidate/explore"
+              to="/candidate/quizById"
 
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
