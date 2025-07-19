@@ -1,30 +1,38 @@
 .admin-sidebar {
   width: 250px;
-  background-color: #1a1a2e;
+  background-color: #020817; /* Updated to Background 2 */
   height: 100vh;
   padding-top: 20px;
   position: fixed;
-  color: #ffffff;
+  color: #F8FAFC; /* Main text */
 }
 
 .sidebar-header {
-  padding: 10px 20px;
-  border-bottom: 1px solid #2e2e3f;
+  padding: 7px 20px;
+  border-bottom: 1px solid #1E293B; /* Input box color for subtle border */
 }
 
 .nav-link {
-  color: #ffffff !important;
+  color: #F8FAFC !important; /* Main text */
   padding: 10px 20px;
   font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  border-radius: 10px;
 }
 
 .nav-link:hover {
-  color: #00b4d8 !important;
-  background-color: #16213e;
+  color: #F8FAFC !important;
+  background-color: #1E293B; /* Search/Input background */
 }
 
 .nav-link.active {
-  color: #00b4d8 !important; /* Blue theme */
-  background-color: #16213e;
-  font-weight: bold;
+  color: #F8FAFC !important;
+  background-color: #6366F1; /* Selected Item / Button Color */
+  font-weight: bold;/* Optional: a tag color for accent */
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
