@@ -1,3 +1,287 @@
+/* 
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html, body {
+    margin: 0;
+    background: white;
+    font-family: 'Montserrat', helvetica, arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0;
+    width: 100%;
+}
+
+.upper-part {
+    background: linear-gradient(to bottom right, rgba(106, 62, 131, 0.2), rgb(31, 24, 24));
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.main-content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.main-content h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.main-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    margin-bottom: 20px;
+}
+
+.create-btn,
+.join-btn {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.create-btn {
+    background: #fff;
+    color: #0f3460;
+}
+
+.join-btn {
+    background: #2c75cf;
+    color: #fff;
+}
+
+.categories {
+    margin-top: 30px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.categories h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.carousel-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-track {
+    display: flex;
+    animation: scroll 20s linear infinite;
+    width: max-content;
+}
+
+.category-card {
+    margin-top: 10px;
+    flex: 0 0 290px;
+    height: 180px;
+    margin-right: 20px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.7s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+}
+
+.category-card:hover {
+    transform: scale(1.04);
+   box-shadow: 0px 10px 20px  #6f58f056;
+  transition: all 0.4s;
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.card-overlay h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-30%);
+    }
+}
+
+.carousel-container:hover .carousel-track {
+    animation-play-state: paused;
+}
+
+.latest-quiz {
+    margin-top: 30px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.latest-quiz h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.quiz-grid >.quiz-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: all 0.4s;
+    box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);
+    background:#0f39612e;
+}
+
+.quiz-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 0px 80px -50px #0f3460;;
+    transition: all 0.4s;
+}
+
+.info-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    border-radius: 10px;
+    padding-bottom: 40px;
+}
+
+.quiz-header img {
+    height: 110px;
+    width: 160px;
+    box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
+.quiz-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #2c75cf;
+    border-color:#6f58f0;
+}
+
+.btn-secondary:hover {
+    background-color: #0d5ec1;
+    border-color: #545b62;
+}
+
+.badge.bg-secondary {
+    background-color: #2c75cf !important;
+    font-size: small  ;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.text-secondary {
+    color: #6c757d !important;
+}
+
+.fw-bold {
+    font-weight: 700 !important;
+}
+
+@media (max-width: 768px) {
+    .category-card {
+        flex: 0 0 250px;
+        height: 150px;
+    }
+
+    .upper-part {
+        padding: 20px;
+    }
+
+    .main-content h1 {
+        font-size: 36px;
+    }
+
+    .main-content h2 {
+        font-size: 28px;
+    }
+
+    .main-content p {
+        font-size: 16px;
+    }
+
+    .quiz-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .category-card {
+        flex: 0 0 200px;
+        height: 120px;
+    }
+
+    .card-overlay h4 {
+        font-size: 16px;
+    }
+
+    .quiz-grid {
+        grid-template-columns: 1fr;
+    }
+} */
+
+
 
 * {
     box-sizing: border-box;
@@ -278,5 +562,255 @@ html, body {
 
     .quiz-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+
+/* Optional card CSS */
+/* Dark Theme Quiz Showcase */
+/* Dark Theme Quiz Showcase */
+.quiz-showcase {
+    max-width: 1440px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    background-color: #0f121f;
+    color: #e0e0e0;
+}
+
+.quiz-showcase__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    padding-top: 2rem;
+}
+
+.quiz-showcase__title {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+    position: relative;
+    display: inline-block;
+    font-weight: 800;
+}
+
+.quiz-showcase__title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #6f58f0 0%, #2c75cf 100%);
+    border-radius: 2px;
+}
+
+.quiz-showcase__subtitle {
+    color: #a0a0a0;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Quiz Cards Grid - 4 columns */
+.quiz-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+/* Dark Theme Quiz Card */
+.quiz-card {
+    background: #1a1e2d;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 100%;
+}
+
+.quiz-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(111, 88, 240, 0.25);
+    border-color: rgba(111, 88, 240, 0.3);
+}
+
+.quiz-card__media {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+.quiz-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    filter: brightness(0.9);
+}
+
+.quiz-card:hover .quiz-card__image {
+    transform: scale(1.08);
+    filter: brightness(1);
+}
+
+.quiz-card__difficulty {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 0.4rem 1.1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.quiz-card__difficulty--easy {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+
+.quiz-card__difficulty--medium {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+}
+
+.quiz-card__difficulty--hard {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.quiz-card__content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz-card__meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    align-items: center;
+}
+
+.quiz-card__category {
+    color: #6f58f0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.75rem;
+}
+
+.quiz-card__duration {
+    color: #b0b0b0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.quiz-card__meta-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.quiz-card__title {
+    font-size: 1.25rem;
+    margin: 0.5rem 0 1.25rem;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.quiz-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.quiz-card__date {
+    color: #888;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quiz-card__action {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.65rem 1.25rem;
+    background: linear-gradient(90deg, #6f58f0 0%, #2c75cf 100%);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(111, 88, 240, 0.25);
+}
+
+.quiz-card__action:hover {
+    background: linear-gradient(90deg, #5a43d4 0%, #1a65c7 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(111, 88, 240, 0.35);
+}
+
+.quiz-card__action-icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.quiz-card__action:hover .quiz-card__action-icon {
+    transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .quiz-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .quiz-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .quiz-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .quiz-showcase {
+        padding: 0 1.5rem;
+    }
+    
+    .quiz-card__media {
+        height: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz-showcase__title {
+        font-size: 2rem;
+    }
+    
+    .quiz-showcase__subtitle {
+        font-size: 1rem;
     }
 }
