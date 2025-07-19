@@ -34,6 +34,11 @@ const AdminSidebar = () => {
             <i className="bi bi-cpu me-2"></i> AI Quiz Generator
           </NavLink>
         </li>
+         <li className="nav-item">
+          <NavLink to="/admin/quiz-result" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+            <i className="bi bi-cpu me-2"></i> Quiz Result
+          </NavLink>
+        </li>
         <li className="nav-item">
           <NavLink to="/admin/settings" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
             <i className="bi bi-gear me-2"></i> Settings
