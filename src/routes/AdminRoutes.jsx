@@ -7,6 +7,7 @@ import AdminLayout from '../layouts/AdminLayout';
 import Dashboard from '../pages/admin/Dashboard/Dashboard';
 import QuizResult from '../pages/admin/QuizResult';
 
+
 function AdminRoutes() {
   return (
     <>

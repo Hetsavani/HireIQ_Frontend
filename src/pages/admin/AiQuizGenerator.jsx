@@ -118,9 +118,16 @@ const AiQuizGenerator = () => {
                 <div className="question-title" onClick={() => toggleExpand(i)}>
                   <strong>Question {i + 1}</strong>
                   <div className="question-actions">
-                    <button onClick={(e) => { e.stopPropagation(); moveQuestion(i, i - 1); }}>⬆</button>
-                    <button onClick={(e) => { e.stopPropagation(); moveQuestion(i, i + 1); }}>⬇</button>
-                    <button onClick={(e) => { e.stopPropagation(); deleteQuestion(i); }}>🗑</button>
+                    <button onClick={(e) => { e.stopPropagation(); moveQuestion(i, i - 1); }}>
+                      <i className="fas fa-arrow-up"></i>
+                    </button>
+                    <button onClick={(e) => { e.stopPropagation(); moveQuestion(i, i + 1); }}>
+                      <i className="fas fa-arrow-down"></i>
+                    </button>
+                    <button onClick={(e) => { e.stopPropagation(); deleteQuestion(i); }}>
+                     <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+
                   </div>
                 </div>
 
@@ -304,7 +311,7 @@ const AiQuizGenerator = () => {
           <div className="quiz-tabs inner-tabs">
             <button className={`quiz-tab ${editorTab === 'details' ? 'active' : ''}`} onClick={() => setEditorTab('details')}>Quiz Details</button>
             <button className={`quiz-tab ${editorTab === 'questions' ? 'active' : ''}`} onClick={() => setEditorTab('questions')}>Questions</button>
-            </div>
+          </div>
 
           {renderEditorTabContent()}
         </div>
