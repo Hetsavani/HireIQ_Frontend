@@ -5,7 +5,7 @@ const LoginNew = () => {
   const [isRightPanelActive, setIsRightPanelActive] = useState(false);
 
   return (
-    <div className='tempbody'>
+    <div className='tempbody-login'>
     <div className={`containerlogin ${isRightPanelActive ? 'right-panel-activelogin' : ''}`} id="container">
       <div className="form-containerlogin sign-up-containerlogin">
         <form className="form-stylelogin" onSubmit={(e) => e.preventDefault()}>
