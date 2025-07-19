@@ -9,6 +9,7 @@ const ForgotPassword = () => {
   }
   return (
     <>
+    <div className='tempbody'>
       {isVerified && <div className={`container ${isRightPanelActive ? 'right-panel-active' : ''}`} id="container">
         <div className="form-container sign-up-container">
           <form onSubmit={(e) => e.preventDefault()}>
@@ -64,6 +65,7 @@ const ForgotPassword = () => {
           </div>
         </div>
       </div>}
+      </div>
     </>
   );
 };
