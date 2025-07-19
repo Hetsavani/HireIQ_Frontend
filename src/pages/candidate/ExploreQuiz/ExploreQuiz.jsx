@@ -1,5 +1,7 @@
 import React from 'react';
 import './ExploreQuize.css';
+import { Line } from 'recharts';
+import { NavLink } from 'react-router-dom';
 
 const ExploreQuiz = () => {
   const quizzes = [
@@ -64,10 +66,14 @@ const ExploreQuiz = () => {
                 <span>{quiz.players} players</span>
               </div>
               
-              <button className="play-button">
+              {/* <button className="play-button" >
                 Play Now
                 <span className="button-icon">→</span>
-              </button>
+              </button> */}
+
+              <NavLink className="play-button" to="QuizById">
+                  play now
+              </NavLink>
             </div>
           </div>
         ))}

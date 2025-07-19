@@ -23,4 +23,4 @@ function AdminRoutes() {
   );
 }
 
-export default AdminRoutes;
+export default AdminRoutes; 
