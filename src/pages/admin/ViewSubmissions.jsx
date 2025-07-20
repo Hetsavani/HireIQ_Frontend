@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Crown, Star, Download, Mail } from 'lucide-react';
 import './ViewSubmission.css';
 import axios from 'axios';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const Leader_VS = ({ users }) => {
   const getTierColor_VS = (tier) => {
@@ -74,13 +75,14 @@ const Leader_VS = ({ users }) => {
 };
 
 
-const ViewSubmission = ({ quizId }) => {
+const ViewSubmission = () => {
   const [rankings, setRankings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [hoveredUser, setHoveredUser] = useState(null);
   const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
   const [popupVisible, setPopupVisible] = useState(false);
+  const { quizId } = useParams();
 
   useEffect(() => {
     if (!quizId) return;
@@ -167,23 +169,28 @@ const ViewSubmission = ({ quizId }) => {
           </thead>
           <tbody>
             {rankings.map((user, index) => (
-              <tr key={index} className="table_row_VS">
-                <td>{index + 1}</td>
-                <td>
-                  <div
-                    className="user_cell_VS"
-                    onMouseEnter={(e) => handleNameHover(user, e)}
-                    onMouseLeave={() => setPopupVisible(false)}
-                  >
-                    <img src={user.photo} alt={user.name} className="user_avatar_VS" />
-                    {user.name}
-                  </div>
-                </td>
-                <td>{user.college}</td>
-                <td>{user.score && <span className="streak_VS">{user.score}</span>}</td>
-                <td>{user.percentage}</td>
-                <td>{user.eligibility}</td>
-              </tr>
+              // <Link to={`/view-submissions/${user.submissionId}`} key={index} className="table_row_VS">
+                <tr key={index} className="table_row_VS">
+                  <td>{index + 1}</td>
+                  <td>
+                    <div
+                      className="user_cell_VS"
+                      onMouseEnter={(e) => handleNameHover(user, e)}
+                      onMouseLeave={() => setPopupVisible(false)}
+                      onClick={()=>{
+                        useNavigate(`view-submissions/${user.submissionId}`)
+                      }}
+                    >
+                      <img src={user.photo} alt={user.name} className="user_avatar_VS" />
+                      {user.name}
+                    </div>
+                  </td>
+                  <td>{user.college}</td>
+                  <td>{user.score && <span className="streak_VS">{user.score}</span>}</td>
+                  <td>{user.percentage}</td>
+                  <td>{user.eligibility}</td>
+                </tr>
+              // </Link>
             ))}
           </tbody>
         </table>

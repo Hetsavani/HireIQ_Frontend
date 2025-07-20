@@ -30,7 +30,7 @@ const AdminSidebar = () => {
             </NavLink>
           </li>
           
-          <li className="nav_item_AS">
+          {/* <li className="nav_item_AS">
             <NavLink 
               to="/admin/create-quiz" 
               className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
@@ -41,11 +41,11 @@ const AdminSidebar = () => {
               </div>
               <div className="active_indicator_AS"></div>
             </NavLink>
-          </li>
+          </li> */}
           
-          <li className="nav_item_AS">
+          {/* <li className="nav_item_AS">
             <NavLink 
-              to="/admin/view-submissions" 
+              to="/admin/leaderboard" 
               className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
             >
               <div className="link_content_AS">
@@ -54,9 +54,9 @@ const AdminSidebar = () => {
               </div>
               <div className="active_indicator_AS"></div>
             </NavLink>
-          </li>
+          </li> */}
           
-          <li className="nav_item_AS">
+          {/* <li className="nav_item_AS">
             <NavLink 
               to="/admin/view-report" 
               className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
@@ -67,7 +67,7 @@ const AdminSidebar = () => {
               </div>
               <div className="active_indicator_AS"></div>
             </NavLink>
-          </li>
+          </li> */}
           
           <li className="nav_item_AS">
             <NavLink 
@@ -81,6 +81,35 @@ const AdminSidebar = () => {
               <div className="active_indicator_AS"></div>
             </NavLink>
           </li>
+          <li className="nav_item_AS">
+            <NavLink 
+              to="/admin/exploreQuiz" 
+              className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
+            >
+              <div className="link_content_AS">
+                <i className="bi bi-cpu nav_icon_AS"></i>
+                <span className="nav_text_AS">Explore Quizzies</span>
+              </div>
+              <div className="active_indicator_AS"></div>
+            </NavLink>
+          </li>
+
+          <li className="nav_item_AS">
+            {/* <NavLink 
+              to="/admin/leaderboard" 
+              className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
+            > */}
+            <NavLink 
+              to="/admin/view-submissions" 
+              className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
+            >
+              <div className="link_content_AS">
+                <i className="bi bi-cpu nav_icon_AS"></i>
+                <span className="nav_text_AS">LeaderBoard</span>
+              </div>
+              <div className="active_indicator_AS"></div>
+            </NavLink>
+          </li>
           
           <li className="nav_item_AS">
             <NavLink 
@@ -90,6 +119,18 @@ const AdminSidebar = () => {
               <div className="link_content_AS">
                 <i className="bi bi-trophy nav_icon_AS"></i>
                 <span className="nav_text_AS">Quiz Result</span>
+              </div>
+              <div className="active_indicator_AS"></div>
+            </NavLink>
+          </li>
+          <li className="nav_item_AS">
+            <NavLink 
+              to="/admin/profile" 
+              className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
+            >
+              <div className="link_content_AS">
+                <i className="bi bi-trophy nav_icon_AS"></i>
+                <span className="nav_text_AS">Profile</span>
               </div>
               <div className="active_indicator_AS"></div>
             </NavLink>
@@ -112,7 +153,7 @@ const AdminSidebar = () => {
         
         <div className="sidebar_footer_AS">
           <NavLink 
-            to="/admin/logout" 
+            to="/" 
             className={({ isActive }) => `nav_link_AS logout_link_AS ${isActive ? 'active_AS' : ''}`}
           >
             <div className="link_content_AS">
