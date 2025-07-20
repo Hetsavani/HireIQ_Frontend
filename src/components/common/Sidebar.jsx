@@ -55,6 +55,14 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink
+              to="botConversation"
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              <i className="fas fa-comments" /> Bot Conversation
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/logout"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >

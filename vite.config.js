@@ -1,14 +1,31 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+// import { defineConfig } from 'vite'
+// import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+// // https://vite.dev/config/
+// export default defineConfig({
+//   plugins: [react()],
+//   server: {
+//     fs: {
+//       allow: ['.'],
+//     },
+//     middlewareMode: false,
+//     historyApiFallback: true
+//   }
+// })
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
 export default defineConfig({
-  plugins: [react()],
   server: {
-    fs: {
-      allow: ['.'],
+    proxy: {
+      '/api': {
+        target: 'https://api.vapi.ai',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: false,
+      },
     },
-    middlewareMode: false,
-    historyApiFallback: true
-  }
-})
+  },
+  plugins: [react()],
+});
