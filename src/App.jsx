@@ -22,6 +22,7 @@ import BotConversation from './pages/candidate/BotConversation';
 import Agent from './pages/candidate/Agent';
 import Profile from './pages/candidate/profile';
 import ExploreQuizCopy from './pages/candidate/ExploreQuiz/ExploreQuiz copy';
+import AllQuiz from './pages/admin/AllQuiz';
 
 
 function App() {
@@ -53,7 +54,8 @@ function App() {
           <Route path="exploreQuiz" element={<ExploreQuizCopy />} />  
           <Route path="create-quiz" element={<CreateQuiz />} />
           <Route path="leaderboard" element={<Leaderboard_form />} />
-          <Route path="leaderboard/view-submissions" element={<ViewSubmission />} />
+          <Route path="view-submissions/:quizId" element={<ViewSubmission />} />
+          <Route path="view-submissions" element={<AllQuiz />} />
           {/* <Route path="view-submissions" element={<ViewSubmission />} /> */}
           <Route path="ai-quiz-generator" element={<AiQuizGenerator />} />
           <Route path="quiz-result" element={<QuizResult />} />

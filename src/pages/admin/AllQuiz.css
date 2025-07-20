@@ -1,0 +1,145 @@
+.explore-quizzes {
+  padding: 2rem;
+  background-color: #0F172A; /* dark background */
+  color: #F8FAFC; /* light text */
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #F8FAFC;
+}
+
+.quiz-grid1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.quiz-card1 {
+  background-color: #1E293B;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.quiz-card1:hover {
+  transform: scale(1.02);
+}
+
+.quiz-image-container {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.quiz-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  width: 100%;
+  padding: 0.5rem;
+  color: #fff;
+}
+
+.category-badge {
+  background-color: #A855F7;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.quiz-badges {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  border-radius: 999px;
+  font-weight: 600;
+  color: white;
+}
+
+.badge.hot {
+  background-color: #E11D48; /* red */
+}
+
+.badge.editors-choice {
+  background-color: #3B82F6; /* blue */
+}
+
+.badge.trending {
+  background-color: #EAB308; /* yellow */
+  color: #000;
+}
+
+.badge.top-rated {
+  background-color: #10B981; /* green */
+}
+
+.quiz-content {
+  padding: 1rem;
+}
+
+.quiz-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #F8FAFC;
+}
+
+.host-info {
+  font-size: 0.9rem;
+  color: #94A3B8;
+  margin-bottom: 0.5rem;
+}
+
+.host-label {
+  font-weight: 500;
+}
+
+.host-name {
+  font-weight: 600;
+  color: #F8FAFC;
+}
+
+.players-info {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+
+.play-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #6366F1;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.play-button:hover {
+  background-color: #4f46e5;
+  text-decoration: none;
+  color: white;
+}

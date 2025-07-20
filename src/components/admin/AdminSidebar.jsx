@@ -95,8 +95,12 @@ const AdminSidebar = () => {
           </li>
 
           <li className="nav_item_AS">
-            <NavLink 
+            {/* <NavLink 
               to="/admin/leaderboard" 
+              className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
+            > */}
+            <NavLink 
+              to="/admin/view-submissions" 
               className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
             >
               <div className="link_content_AS">
