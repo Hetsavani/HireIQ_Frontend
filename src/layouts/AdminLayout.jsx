@@ -11,7 +11,7 @@ const AdminLayout = () => {
       <AdminSidebar />
       <div className="w-100">
         <AdminNavbar />
-        <div className="flex-grow-1 p-4"
+        <div className="flex-grow-1 p-4 ps-5"
           style={{// Adjust if navbar height is different
             overflowY: "auto",
             backgroundColor: "#0f121f", marginLeft: '250px' }} >
