@@ -79,7 +79,7 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink
-              to="/logout"
+              to="/"
               className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
             >
               <i className="fas fa-sign-out-alt nav-icon_CS" />

@@ -1,10 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from "recharts";
 import './Dashboard.css'
+import axios from 'axios';
 
 export default function Dashboard() {
+
+  // const [completedQuizzes,setcompletedQuizzes] = useState([]);
+
+  useEffect(() => {
+    const fetchSubmissions = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
+
+        const response = await axios.get(`http://localhost:3000/api/user/quizzes/admin/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        // setcompletedQuizzes(response.data);
+
+        console.log(response.data);
+
+      } catch (err) {
+        console.error('Failed to fetch submissions:', err);
+        // setError('Failed to load submissions.');
+      }
+    };
+
+
+    fetchSubmissions();
+  }, []);
+  
   const quizData = [
     { title: "Quiz 1", date: "2025-07-01", participants: 10 },
     { title: "Quiz 2", date: "2025-07-03", participants: 8 },

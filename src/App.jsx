@@ -21,6 +21,7 @@ import Leaderboard_form from './pages/admin/Leaderboard_form';
 import BotConversation from './pages/candidate/BotConversation';
 import Agent from './pages/candidate/Agent';
 import Profile from './pages/candidate/profile';
+import ExploreQuizCopy from './pages/candidate/ExploreQuiz/ExploreQuiz copy';
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
 
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="exploreQuiz" element={<ExploreQuizCopy />} />  
           <Route path="create-quiz" element={<CreateQuiz />} />
           <Route path="leaderboard" element={<Leaderboard_form />} />
           <Route path="leaderboard/view-submissions" element={<ViewSubmission />} />

@@ -13,7 +13,7 @@ const UpperPart_CD = () => {
             <p className="upper-description_CD">Build engaging quizzes, challenge others, and learn new things <br />for your knowledge</p>
             <div className="upper-buttons_CD">
                 {/* <button className="create-btn_CD">Create Quiz</button> */}
-                <NavLink to={"botConversation"} className="join-btn_CD" style={{textDecoration:"none"}}>Join Contest</NavLink>
+                <NavLink to={"/candidate/botConversation"} className="join-btn_CD" style={{textDecoration:"none"}}>AI Interview</NavLink>
             </div>
         </div>
     );
@@ -338,7 +338,7 @@ const OptionalCard_CD = () => {
                                     })}
                                 </time>
                                 <a 
-                                    href={`/quiz/${quiz.quizId}`} 
+                                    href={`/candidate/ExploreQuiz/QuizById/${quiz.quizId}`} 
                                     className="featured-action_CD"
                                     aria-label={`Start ${quiz.title} quiz`}
                                 >
