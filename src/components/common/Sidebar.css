@@ -1,76 +1,190 @@
-.sidebar {
+.sidebar_CS {
   width: 250px;
-  background: #0f121f;
-  color: #fff;
+  background: linear-gradient(180deg, #020817 0%, #0F172A 100%);
+  color: #F8FAFC;
   height: 100vh;
   position: fixed;
-  padding-top: 1px;
-
-  border-right: 1px solid rgba(80, 80, 80, 0.3);
-
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-right: 1px solid rgba(30, 41, 59, 0.5);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #1E293B #020817;
 }
 
-.sidebar ul {
+/* Webkit scrollbar styling */
+.sidebar_CS::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar_CS::-webkit-scrollbar-track {
+  background: #020817;
+}
+
+.sidebar_CS::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 3px;
+}
+
+.sidebar_CS::-webkit-scrollbar-thumb:hover {
+  background: #6366F1;
+}
+
+/* Logo Section */
+.logo_CS {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+  margin-bottom: 0px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.05));
+}
+
+.logo-icon_CS {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #6366F1, #A855F7);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.logo-icon_CS i {
+  font-size: 18px;
+  color: #F8FAFC;
+}
+
+.logo-text_CS {
+  font-size: 24px;
+  font-weight: 700;
+  color: #F8FAFC;
+  letter-spacing: -0.5px;
+}
+
+/* Navigation */
+.nav_CS {
+  padding: 15px 12px;
+}
+
+.nav-list_CS {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.logo {
-  padding-left: 20px;
-  padding-bottom: 10px;
-  padding-top: 7px;
-  font-size: 24px;
-  font-weight: bold;
-
-  border-bottom: 1px solid rgba(80, 80, 80, 0.3);
-
-  margin-bottom: 10px;
+.nav-item_CS {
+  margin-bottom: 6px;
 }
-/* 
-.sidebar li {
-  padding: 15px 20px;
-  cursor: pointer;
+
+.nav-link_CS {
   display: flex;
   align-items: center;
-  border-radius: 10px;
-}
-
-.sidebar li i {
-  margin-right: 10px;
-}
-
-.sidebar li:hover {
-  background: #16213e;
-}
-
-.sidebar li.active {
-  background: #0f3460;
-  color: #fff;
-} */
-.sidebar ul li {
-  margin-bottom: 8px;
-  padding-right: 5px;
-  padding-left: 5px;
-}
-
-.sidebar ul li a {
-  display: block;                /* <== Key fix */
-  width: 100%;                   /* fills li */
-  padding: 15px 20px;
-  color: white;
+  padding: 14px 16px;
+  color: #F8FAFC;
   text-decoration: none;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: background 0.3s ease;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  font-weight: 500;
+  letter-spacing: 0.2px;
 }
 
-.sidebar ul li a.active {
-  background-color: #6f58f0;
-  color: white;
+.nav-link_CS::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
 }
 
-.sidebar ul li a:hover {
-  background-color: #16213e;
+.nav-link_CS:hover {
+  color: #F8FAFC;
+  transform: translateX(4px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+}
+
+.nav-link_CS:hover::before {
+  opacity: 1;
+}
+
+.nav-link_CS.active_CS {
+  background: linear-gradient(135deg, #6366F1, #A855F7);
+  color: #F8FAFC;
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  transform: translateX(6px);
+  font-weight: 600;
+}
+
+.nav-link_CS.active_CS::before {
+  opacity: 0;
+}
+
+.nav-icon_CS {
+  width: 20px;
+  text-align: center;
+  margin-right: 12px;
+  font-size: 16px;
+  z-index: 1;
+  position: relative;
+}
+
+.nav-text_CS {
+  font-size: 14px;
+  z-index: 1;
+  position: relative;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar_CS {
+    width: 220px;
+  }
+  
+  .logo_CS {
+    padding: 20px 16px;
+  }
+  
+  .logo-text_CS {
+    font-size: 20px;
+  }
+  
+  .nav_CS {
+    padding: 0 8px;
+  }
+  
+  .nav-link_CS {
+    padding: 12px 14px;
+  }
+  
+  .nav-text_CS {
+    font-size: 13px;
+  }
+}
+
+/* Animation for loading */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.sidebar_CS {
+  animation: slideInLeft 0.4s ease-out;
 }

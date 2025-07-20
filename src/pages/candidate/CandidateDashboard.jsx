@@ -1,5 +1,8 @@
 import React from 'react';
 import './CandidateDashboard.css';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const UpperPart_CD = () => {
     return (
@@ -49,51 +52,132 @@ const QuizCategory_CD = () => {
 };
 
 const LatestQuiz_CD = () => {
-    const quizzes = [
-        { 
-            id: 1, 
-            title: 'Maths Challenge', 
-            category: 'Geography', 
-            difficulty: 'Medium', 
-            time: '30 min', 
-            date: '2025-07-15', 
-            image: 'src/assets/img/quizCategory/code.jpeg' 
-        },
-        { 
-            id: 2, 
-            title: 'Science Trivia', 
-            category: 'Science', 
-            difficulty: 'Hard', 
-            time: '45 min', 
-            date: '2025-07-14', 
-            image: 'src/assets/img/quizCategory/html.jpeg' 
-        },
-        { 
-            id: 3, 
-            title: 'History Quiz', 
-            category: 'History', 
-            difficulty: 'Easy', 
-            time: '20 min', 
-            date: '2025-07-13', 
-            image: 'src/assets/img/quizCategory/JAVA.jpeg' 
-        },
-         { 
-            id: 2, 
-            title: 'Science Trivia', 
-            category: 'Science', 
-            difficulty: 'Hard', 
-            time: '45 min', 
-            date: '2025-07-14', 
-            image: 'src/assets/img/quizCategory/html.jpeg' 
-        },
-    ];
+
+    // const quizzes = [
+    //     { 
+    //         quizId: 1, 
+    //         title: 'Advanced JavaScript', 
+    //         // category: 'Programming', 
+    //         // difficulty: 'Hard', 
+    //         timeLimit: '45 min', 
+    //         // date: '2025-07-18', 
+    //         // image: 'src/assets/img/quizCategory/code.jpeg' 
+    //         requiredPercentage : 10,
+    //         description: "",
+    //         createdBy: "",
+    //         questions: []
+    //     }
+    //     // { 
+    //     //     id: 1, 
+    //     //     title: 'Maths Challenge', 
+    //     //     category: 'Geography', 
+    //     //     difficulty: 'Medium', 
+    //     //     time: '30 min', 
+    //     //     date: '2025-07-15', 
+    //     //     image: 'src/assets/img/quizCategory/code.jpeg' 
+    //     // },
+    //     // { 
+    //     //     id: 2, 
+    //     //     title: 'Science Trivia', 
+    //     //     category: 'Science', 
+    //     //     difficulty: 'Hard', 
+    //     //     time: '45 min', 
+    //     //     date: '2025-07-14', 
+    //     //     image: 'src/assets/img/quizCategory/html.jpeg' 
+    //     // },
+    //     // { 
+    //     //     id: 3, 
+    //     //     title: 'History Quiz', 
+    //     //     category: 'History', 
+    //     //     difficulty: 'Easy', 
+    //     //     time: '20 min', 
+    //     //     date: '2025-07-13', 
+    //     //     image: 'src/assets/img/quizCategory/JAVA.jpeg' 
+    //     // },
+    //     //  { 
+    //     //     id: 2, 
+    //     //     title: 'Science Trivia', 
+    //     //     category: 'Science', 
+    //     //     difficulty: 'Hard', 
+    //     //     time: '45 min', 
+    //     //     date: '2025-07-14', 
+    //     //     image: 'src/assets/img/quizCategory/html.jpeg' 
+    //     // },
+    // ];
+
+    // return (
+    //     <div className="latest-quiz-container_CD">
+    //         <h3 className="latest-quiz-title_CD">Latest Quiz</h3>
+    //         <div className="quiz-grid_CD">
+    //             {quizzes.map((quiz) => (
+    //                 <div key={quiz.quizId} className="quiz-card_CD">
+    //                     <div className="quiz-card-content_CD">
+    //                         <div className="quiz-header_CD">
+    //                             <img 
+    //                                 src="src/assets/img/quizCategory/code.jpeg" 
+    //                                 alt={quiz.title} 
+    //                                 className="quiz-image_CD" 
+    //                             />
+    //                             <div className="quiz-details_CD">
+    //                                 <h5 className="quiz-title_CD">{quiz.title}</h5>
+    //                                 <span className="quiz-date_CD">{quiz.createdBy}</span>
+    //                                 <span className="quiz-time-badge_CD">{quiz.timeLimit}</span>
+    //                                 <p className="quiz-difficulty_CD">⭐ {quiz.difficulty}</p>
+    //                             </div>
+    //                         </div>
+    //                         <p className="quiz-category_CD">Category: {quiz.description==""?"JavaScript":quiz.description}</p>
+    //                         <div className="quiz-footer_CD">
+    //                             <a 
+    //                                 href={`/quiz/${quiz.quizId}`} 
+    //                                 className="quiz-action-btn_CD"
+    //                             >
+    //                                 Apply Now
+    //                             </a>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //             ))}
+    //         </div>
+    //     </div>
+    // );
+
+
+    const [quizzes, setQuizzes] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        const fetchQuizzes = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const res = await axios.get('http://localhost:3000/api/quiz/quizzes', {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    }
+                });
+                console.log(res.data);
+                setQuizzes(res.data || []); // backend must return `quizzes` array
+            } catch (err) {
+                console.error("Failed to fetch quizzes:", err);
+                setError("Failed to load quizzes.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchQuizzes();
+    }, []);
+
+    if (loading) return <p>Loading quizzes...</p>;
+    if (error) return <p>{error}</p>;
 
     return (
         <div className="latest-quiz-container_CD">
             <h3 className="latest-quiz-title_CD">Latest Quiz</h3>
             <div className="quiz-grid_CD">
                 {quizzes.map((quiz) => (
-                    <div key={quiz.id} className="quiz-card_CD">
+                    <div key={quiz.quizId} className="quiz-card_CD">
                         <div className="quiz-card-content_CD">
                             <div className="quiz-header_CD">
                                 <img 
@@ -103,15 +187,17 @@ const LatestQuiz_CD = () => {
                                 />
                                 <div className="quiz-details_CD">
                                     <h5 className="quiz-title_CD">{quiz.title}</h5>
-                                    <span className="quiz-date_CD">{quiz.date}</span>
-                                    <span className="quiz-time-badge_CD">{quiz.time}</span>
-                                    <p className="quiz-difficulty_CD">⭐ {quiz.difficulty}</p>
+                                    <span className="quiz-date_CD">{quiz.createdBy?.name}</span>
+                                    <span className="quiz-time-badge_CD">{quiz.timeLimit / 60} min</span>
+                                    <p className="quiz-difficulty_CD">⭐ {quiz.difficulty || 'Medium'}</p>
                                 </div>
                             </div>
-                            <p className="quiz-category_CD">Category: {quiz.category}</p>
+                            <p className="quiz-category_CD">
+                                Category: {quiz.description || "JavaScript"}
+                            </p>
                             <div className="quiz-footer_CD">
                                 <a 
-                                    href={`/quiz/${quiz.id}`} 
+                                    href={`/quiz/${quiz.quizId}`} 
                                     className="quiz-action-btn_CD"
                                 >
                                     Apply Now
@@ -124,18 +210,22 @@ const LatestQuiz_CD = () => {
         </div>
     );
 };
-
+ 
 const OptionalCard_CD = () => {
     const quizzes = [
-        { 
-            id: 1, 
-            title: 'Advanced JavaScript', 
-            category: 'Programming', 
-            difficulty: 'Hard', 
-            time: '45 min', 
-            date: '2025-07-18', 
-            image: 'src/assets/img/quizCategory/code.jpeg' 
-        },
+        // { 
+        //     quizId: 1, 
+        //     title: 'Advanced JavaScript', 
+        //     // category: 'Programming', 
+        //     // difficulty: 'Hard', 
+        //     timeLimit: '45 min', 
+        //     // date: '2025-07-18', 
+        //     // image: 'src/assets/img/quizCategory/code.jpeg' 
+        //     requiredPercentage : 10,
+        //     description: "",
+        //     createdBy: "",
+        //     questions: []
+        // },
         { 
             id: 2, 
             title: 'React Patterns', 
@@ -168,7 +258,8 @@ const OptionalCard_CD = () => {
                     <article key={quiz.id} className="featured-card_CD">
                         <div className="featured-media_CD">
                             <img 
-                                src={quiz.image} 
+                                // src={quiz.image} 
+                                src = ""
                                 alt={quiz.title} 
                                 className="featured-image_CD" 
                                 loading="lazy"
