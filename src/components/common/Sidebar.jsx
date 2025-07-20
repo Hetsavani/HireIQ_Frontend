@@ -4,29 +4,32 @@ import './Sidebar.css';
 
 const Sidebar = () => {
   return (
-    <div className="sidebar">
-      <div className="logo">
-        <i className="fas fa-book-open" />
-        <span>  HireIQ</span>
+    <div className="sidebar_CS">
+      <div className="logo_CS">
+        <div className="logo-icon_CS">
+          <i className="fas fa-book-open" />
+        </div>
+        <span className="logo-text_CS">HireIQ</span>
       </div>
-      <nav>
-        <ul>
-          <li>
+      <nav className="nav_CS">
+        <ul className="nav-list_CS">
+          <li className="nav-item_CS">
             <NavLink
               to="/candidate"
               end
-              className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
             >
-              <i className="fas fa-home" /> Home
+              <i className="fas fa-home nav-icon_CS" />
+              <span className="nav-text_CS">Home</span>
             </NavLink>
           </li>
-          <li>
+          <li className="nav-item_CS">
             <NavLink
               to="/candidate/ExploreQuiz"
-
-              className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
             >
-              <i className="fas fa-compass" /> Explore Quizzes
+              <i className="fas fa-compass nav-icon_CS" />
+              <span className="nav-text_CS">Explore Quizzes</span>
             </NavLink>
           </li>
             {/* <li>
@@ -40,33 +43,35 @@ const Sidebar = () => {
           <li>
             <NavLink
               to="/candidate/completedQuizzes"
-              className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
             >
-              <i className="fas fa-list" /> Quiz Results
+              <i className="fas fa-list" /> Old Quiz Results
             </NavLink>
           </li>
-          {/* <li>
+          <li>
             <NavLink
               to="/discussions"
-              className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
             >
-              <i className="fas fa-comments" /> Quiz Discussions
+              <i className="fas fa-comments nav-icon_CS" />
+              <span className="nav-text_CS">Quiz Discussions</span>
             </NavLink>
-          </li> */}
+          </li>
           <li>
             <NavLink
               to="botConversation"
-              className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
             >
-              <i className="fas fa-comments" /> Evalute Your Self
+              <i className="fas fa-comments" /> Bot Conversation
             </NavLink>
           </li>
-          {/* <li>
+          <li>
             <NavLink
               to="/logout"
-              className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
             >
-              <i className="fas fa-sign-out-alt" /> Logout
+              <i className="fas fa-sign-out-alt nav-icon_CS" />
+              <span className="nav-text_CS">Logout</span>
             </NavLink>
           </li> */}
         </ul>

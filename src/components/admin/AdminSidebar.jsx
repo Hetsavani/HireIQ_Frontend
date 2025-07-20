@@ -4,60 +4,124 @@ import './AdminSidebar.css';
 
 const AdminSidebar = () => {
   return (
-    <nav className="admin-sidebar">
-      <div className="sidebar-header">
-        <h4 className="text-white">Admin Panel</h4>
+    <nav className="admin_sidebar_AS">
+      <div className="sidebar_header_AS">
+        <div className="header_content_AS">
+          {/* <div className="logo_icon_AS">
+            <i className="bi bi-mortarboard-fill"></i>
+          </div> */}
+          <h4 className="header_title_AS">Quiz Admin</h4>
+        </div>
+        <div className="header_divider_AS"></div>
       </div>
-      <ul className="nav flex-column">
-        <li className="nav-item">
-          <NavLink to="/admin/dashboard" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-            <i className="bi bi-speedometer2 me-2"></i> Dashboard
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink to="/admin/create-quiz" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-            <i className="bi bi-plus-square me-2"></i> Create Quiz
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink to="/admin/view-submissions" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-            <i className="bi bi-clipboard-check me-2"></i> View Submissions
-          </NavLink>
-        </li>
+      
+      <div className="nav_container_AS">
+        <ul className="nav_menu_AS">
+          <li className="nav_item_AS">
+            <NavLink 
+              to="/admin/dashboard" 
+              className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
+            >
+              <div className="link_content_AS">
+                <i className="bi bi-speedometer2 nav_icon_AS"></i>
+                <span className="nav_text_AS">Dashboard</span>
+              </div>
+              <div className="active_indicator_AS"></div>
+            </NavLink>
+          </li>
+          
+          <li className="nav_item_AS">
+            <NavLink 
+              to="/admin/create-quiz" 
+              className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
+            >
+              <div className="link_content_AS">
+                <i className="bi bi-plus-square nav_icon_AS"></i>
+                <span className="nav_text_AS">Create Quiz</span>
+              </div>
+              <div className="active_indicator_AS"></div>
+            </NavLink>
+          </li>
+          
+          <li className="nav_item_AS">
+            <NavLink 
+              to="/admin/view-submissions" 
+              className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
+            >
+              <div className="link_content_AS">
+                <i className="bi bi-clipboard-check nav_icon_AS"></i>
+                <span className="nav_text_AS">View Submissions</span>
+              </div>
+              <div className="active_indicator_AS"></div>
+            </NavLink>
+          </li>
+          
+          <li className="nav_item_AS">
+            <NavLink 
+              to="/admin/view-report" 
+              className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
+            >
+              <div className="link_content_AS">
+                <i className="bi bi-bar-chart-line nav_icon_AS"></i>
+                <span className="nav_text_AS">View Report</span>
+              </div>
+              <div className="active_indicator_AS"></div>
+            </NavLink>
+          </li>
+          
+          <li className="nav_item_AS">
+            <NavLink 
+              to="/admin/ai-quiz-generator" 
+              className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
+            >
+              <div className="link_content_AS">
+                <i className="bi bi-cpu nav_icon_AS"></i>
+                <span className="nav_text_AS">AI Quiz Generator</span>
+              </div>
+              <div className="active_indicator_AS"></div>
+            </NavLink>
+          </li>
+          
+          <li className="nav_item_AS">
+            <NavLink 
+              to="/admin/quiz-result" 
+              className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
+            >
+              <div className="link_content_AS">
+                <i className="bi bi-trophy nav_icon_AS"></i>
+                <span className="nav_text_AS">Quiz Result</span>
+              </div>
+              <div className="active_indicator_AS"></div>
+            </NavLink>
+          </li>
+          
+          <li className="nav_item_AS">
+            <NavLink 
+              to="/admin/settings" 
+              className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
+            >
+              <div className="link_content_AS">
+                <i className="bi bi-gear nav_icon_AS"></i>
+                <span className="nav_text_AS">Settings</span>
+              </div>
+              <div className="active_indicator_AS"></div>
+            </NavLink>
+          </li>
+        </ul>
         
-      {/* 
-         <li className="nav-item">
-          <NavLink to="/admin/leaderboard" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-            <i className="bi bi-clipboard-check me-2"></i> LeaderBoard
+        <div className="sidebar_footer_AS">
+          <NavLink 
+            to="/admin/logout" 
+            className={({ isActive }) => `nav_link_AS logout_link_AS ${isActive ? 'active_AS' : ''}`}
+          >
+            <div className="link_content_AS">
+              <i className="bi bi-box-arrow-right nav_icon_AS"></i>
+              <span className="nav_text_AS">Logout</span>
+            </div>
+            <div className="active_indicator_AS"></div>
           </NavLink>
-        </li> */}
-
-        <li className="nav-item">
-          <NavLink to="/admin/view-report" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-            <i className="bi bi-bar-chart-line me-2"></i> View Report
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink to="/admin/ai-quiz-generator" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-            <i className="bi bi-cpu me-2"></i> AI Quiz Generator
-          </NavLink>
-        </li>
-         <li className="nav-item">
-          <NavLink to="/admin/quiz-result" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-            <i className="bi bi-cpu me-2"></i> Quiz Result
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink to="/admin/settings" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-            <i className="bi bi-gear me-2"></i> Settings
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink to="/admin/logout" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-            <i className="bi bi-box-arrow-right me-2"></i> Logout
-          </NavLink>
-        </li>
-      </ul>
+        </div>
+      </div>
     </nav>
   );
 };
