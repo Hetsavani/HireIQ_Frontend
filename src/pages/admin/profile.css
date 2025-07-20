@@ -1,0 +1,70 @@
+.profile-card {
+  background-color:  #020817;
+  color: #F8FAFC;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.profile-avatar-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-outline-secondary,
+.btn-outline-danger,
+.btn-primary {
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.form-control,
+.form-select {
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  color: #fff;
+}
+
+.form-control::placeholder {
+  color: #94a3b8;
+}
+
+.form-label {
+  color: #cbd5e1;
+}
+
+.btn-primary {
+  background-color: #6366F1;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #4f46e5;
+}
+
+
+.h_cl{
+    color: #c7d2e2;
+}
+

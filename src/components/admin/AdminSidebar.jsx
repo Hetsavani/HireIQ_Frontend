@@ -94,8 +94,9 @@ const AdminSidebar = () => {
               <div className="active_indicator_AS"></div>
             </NavLink>
           </li>
+          </ul>
           
-          <li className="nav_item_AS">
+          {/* <li className="nav_item_AS">
             <NavLink 
               to="/admin/settings" 
               className={({ isActive }) => `nav_link_AS ${isActive ? 'active_AS' : ''}`}
@@ -106,8 +107,8 @@ const AdminSidebar = () => {
               </div>
               <div className="active_indicator_AS"></div>
             </NavLink>
-          </li>
-        </ul>
+          </li> */}
+        
         
         <div className="sidebar_footer_AS">
           <NavLink 
