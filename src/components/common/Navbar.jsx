@@ -17,23 +17,7 @@ const Navbar = () => {
         </div>
         
         <div className="nav-actions_CN">
-          {/* <div className="action-icons_CN">
-            <button className="icon-button_CN">
-              <i className="fas fa-comment"></i>
-              <span className="notification-badge_CN">3</span>
-            </button>
-            <button className="icon-button_CN">
-              <i className="fas fa-bell"></i>
-              <span className="notification-badge_CN">5</span>
-            </button>
-          </div> */}
-          
-          {/* <div className="balance-section_CN">
-            <div className="balance-container_CN">
-              <i className="fas fa-wallet balance-icon_CN"></i>
-              <span className="balance-amount_CN">$124.50</span>
-            </div>
-          </div> */}
+        
           
           <div className="user-section_CN">
             <div className="user-profile_CN">
