@@ -1,49 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Crown, Star, Download, Mail } from 'lucide-react';
 import './ViewSubmission.css';
+import axios from 'axios';
 
 const Leader_VS = ({ users }) => {
-  const defaultUsers = [
-    {
-      id: 1,
-      name: "Sarah Williams",
-      points: "8,720 pts",
-      tier: "Platinum",
-      rating: 65,
-      position: 2,
-      image: "https://randomuser.me/api/portraits/women/44.jpg",
-      email: "sarah.williams@example.com",
-      about: "Full-stack developer with 5 years of experience in React and Node.js",
-      resume: "https://example.com/resumes/sarah_williams.pdf"
-    },
-    {
-      id: 2,
-      name: "Alex Johnson",
-      points: "9,850 pts",
-      tier: "Diamond",
-      rating: 78,
-      position: 1,
-      image: "https://randomuser.me/api/portraits/men/32.jpg",
-      email: "alex.johnson@example.com",
-      about: "Senior UX Designer specializing in accessibility and user research",
-      resume: "https://example.com/resumes/alex_johnson.pdf"
-    },
-    {
-      id: 3,
-      name: "Michael Brown",
-      points: "7,640 pts",
-      tier: "Gold",
-      rating: 59,
-      position: 3,
-      image: "https://randomuser.me/api/portraits/men/75.jpg",
-      email: "michael.brown@example.com",
-      about: "Data scientist with expertise in machine learning and Python",
-      resume: "https://example.com/resumes/michael_brown.pdf"
-    }
-  ];
-
-  const userData = users || defaultUsers;
-
   const getTierColor_VS = (tier) => {
     switch (tier) {
       case 'Diamond': return '#6366f1';
@@ -66,12 +26,12 @@ const Leader_VS = ({ users }) => {
     <div className="leader_section_VS">
       <div className="leader_container_VS">
         <div className="leader_grid_VS">
-          {userData.map((user) => (
+          {users?.map((user, index) => (
             <div
-              key={user.id}
-              className={`user_card_VS ${user.position === 1 ? 'winner_VS' : ''}`}
+              key={index}
+              className={`user_card_VS ${user.rank === 1 ? 'winner_VS' : ''}`}
             >
-              {user.position === 1 && (
+              {user.rank === 1 && (
                 <div className="crown_container_VS">
                   <Crown className="crown_icon_VS" />
                 </div>
@@ -79,30 +39,30 @@ const Leader_VS = ({ users }) => {
 
               <div
                 className="profile_image_VS"
-                style={{ borderColor: getBorderColor_VS(user.position) }}
+                style={{ borderColor: getBorderColor_VS(user.rank) }}
               >
-                <img src={user.image} alt={user.name} />
-                {user.position <= 3 && (
+                <img src={user.photo} alt={user.name} />
+                {user.rank <= 3 && (
                   <div className="position_badge_VS">
-                    {user.position}
+                    {user.rank}
                   </div>
                 )}
               </div>
 
               <h3 className="user_name_VS">{user.name}</h3>
-              <p className="user_points_VS">{user.points}</p>
+              <p className="user_points_VS">{user.score} pts</p>
 
               <div className="user_stats_VS">
                 <div
                   className="tier_badge_VS"
-                  style={{ backgroundColor: getTierColor_VS(user.tier) }}
+                  style={{ backgroundColor: getTierColor_VS(user.tier || "Gold") }}
                 >
-                  {user.tier}
+                  {user.tier || "Gold"}
                 </div>
 
                 <div className="rating_VS">
                   <Star className="star_icon_VS" />
-                  <span>{user.rating}</span>
+                  <span>{user.level || 0}</span>
                 </div>
               </div>
             </div>
@@ -113,7 +73,8 @@ const Leader_VS = ({ users }) => {
   );
 };
 
-const ViewSubmission = () => {
+
+const ViewSubmission = ({ quizId }) => {
   const [rankings, setRankings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -122,45 +83,42 @@ const ViewSubmission = () => {
   const [popupVisible, setPopupVisible] = useState(false);
 
   useEffect(() => {
-    const mockData = [
-      { 
-        name: 'Alex Johnson', 
-        country: 'United States', 
-        streak: '6 streak', 
-        score: '9,850', 
-        level: '7.8',
-        email: 'alex.johnson@example.com',
-        about: 'Senior UX Designer specializing in accessibility and user research',
-        resume: 'https://example.com/resumes/alex_johnson.pdf',
-        photo: 'https://randomuser.me/api/portraits/men/32.jpg'
-      },
-      { 
-        name: 'Sarah Williams', 
-        country: 'Canada', 
-        streak: '8 streak', 
-        score: '8,720', 
-        level: '2.65',
-        email: 'sarah.williams@example.com',
-        about: 'Full-stack developer with 5 years of experience in React and Node.js',
-        resume: 'https://example.com/resumes/sarah_williams.pdf',
-        photo: 'https://randomuser.me/api/portraits/women/44.jpg'
-      },
-      { 
-        name: 'Michael Brown', 
-        country: 'United Kingdom', 
-        streak: '8 streak', 
-        score: '7,640', 
-        level: '2.59',
-        email: 'michael.brown@example.com',
-        about: 'Data scientist with expertise in machine learning and Python',
-        resume: 'https://example.com/resumes/michael_brown.pdf',
-        photo: 'https://randomuser.me/api/portraits/men/75.jpg'
-      }
-    ];
+    if (!quizId) return;
 
-    setRankings(mockData);
-    setLoading(false);
-  }, []);
+    async function fetchRankings() {
+      try {
+        console.log("Fetching for Quiz ID:", quizId); // ✅ Confirm input is working
+        // fetch(`http://localhost:3000/api/quiz/join/${quizId}`)
+        const joinRes = await axios.get(`http://localhost:3000/api/quiz/join/${quizId}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        const quizMongoId = joinRes.data?.quiz?._id;
+        console.log(joinRes.data)
+        console.log("Quiz Mongo ID:", quizMongoId);
+
+        if (!quizMongoId) {
+          setError("Quiz not found");
+          return;
+        }
+
+        const leaderboardRes = await axios.get(`http://localhost:3000/api/submissions/leaderboard/${quizMongoId}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        setRankings(leaderboardRes.data);
+      } catch (err) {
+        console.error("Failed to fetch rankings:", err);
+        setError("Failed to fetch rankings. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchRankings();
+  }, [quizId]);
 
   const handleNameHover = (user, event) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -194,17 +152,17 @@ const ViewSubmission = () => {
 
   return (
     <div className="leaderboard_view_VS">
-      <Leader_VS />
+      <Leader_VS users={rankings.slice(0, 3)} />
       <div className="rankings_table_VS">
         <table>
           <thead>
             <tr>
               <th>Rank</th>
-              <th>User</th>
-              <th>Country</th>
-              <th>Streak</th>
+              <th>Candidate</th>
+              <th>College</th>
               <th>Score</th>
-              <th>Level</th>
+              <th>Percentage</th>
+              <th>Eligibility</th>
             </tr>
           </thead>
           <tbody>
@@ -212,7 +170,7 @@ const ViewSubmission = () => {
               <tr key={index} className="table_row_VS">
                 <td>{index + 1}</td>
                 <td>
-                  <div 
+                  <div
                     className="user_cell_VS"
                     onMouseEnter={(e) => handleNameHover(user, e)}
                     onMouseLeave={() => setPopupVisible(false)}
@@ -221,10 +179,10 @@ const ViewSubmission = () => {
                     {user.name}
                   </div>
                 </td>
-                <td>{user.country}</td>
-                <td>{user.streak && <span className="streak_VS">{user.streak}</span>}</td>
-                <td>{user.score}</td>
-                <td>{user.level}</td>
+                <td>{user.college}</td>
+                <td>{user.score && <span className="streak_VS">{user.score}</span>}</td>
+                <td>{user.percentage}</td>
+                <td>{user.eligibility}</td>
               </tr>
             ))}
           </tbody>
@@ -232,7 +190,7 @@ const ViewSubmission = () => {
       </div>
 
       {hoveredUser && popupVisible && (
-        <div 
+        <div
           className="user_popup_VS"
           style={{
             left: `${popupPosition.x}px`,
@@ -254,10 +212,10 @@ const ViewSubmission = () => {
             <div className="popup_field_VS">
               <p className="popup_about_VS">{hoveredUser.about}</p>
             </div>
-            <a 
-              href={hoveredUser.resume} 
+            <a
+              href={hoveredUser.resume}
               className="resume_link_VS"
-              target="_blank" 
+              target="_blank"
               rel="noopener noreferrer"
             >
               <Download className="popup_icon_VS" />
