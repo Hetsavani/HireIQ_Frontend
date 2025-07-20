@@ -5,12 +5,14 @@ import axios from "axios";
 const AiQuizGenerator = () => {
   const [formData, setFormData] = useState({
     title: "",
-    topic: "",
+    description: "",
+    image:"",
+    category: "",
     difficulty: "medium",
     numberOfQuestions: 5,
     timeLimit: "",
-    additionalInformation: "",
     requiredPercentage: 0,
+
   });
 
   const [activeTab, setActiveTab] = useState("generator"); // 'generator' | 'editor'
@@ -28,11 +30,13 @@ const AiQuizGenerator = () => {
 
     const payload = {
       title: formData.title,
-      description: formData.additionalInformation || "Auto-generated quiz",
-      topic: formData.topic,
+      topic:formData.category,
+      description: formData.description || "Auto-generated quiz",
+      image: formData.image,
+      category: formData.category,
       difficulty: formData.difficulty,
       numberOfQuestions: Number(formData.numberOfQuestions),
-      timeLimit: Number(formData.timeLimit) * 60, // convert minutes to seconds if needed
+      timeLimit: Number(formData.timeLimit) * 60, 
       requiredPercentage: Number(formData.requiredPercentage),
     };
 
@@ -150,7 +154,7 @@ const AiQuizGenerator = () => {
             <input className="quiz-input" value={formData.title} readOnly />
 
             <label className="quiz-label">Topic</label>
-            <input className="quiz-input" value={formData.topic} readOnly />
+            <input className="quiz-input" value={formData.category} readOnly />
 
             <label className="quiz-label">Difficulty Level</label>
             <input
@@ -169,10 +173,13 @@ const AiQuizGenerator = () => {
             <label className="quiz-label">Time Limit (mins)</label>
             <input className="quiz-input" value={formData.timeLimit} readOnly />
 
+            <label className="quiz-label">Image Link</label>
+            <input className="quiz-input" value={formData.image} readOnly />
+
             <label className="quiz-label">Additional Information</label>
             <textarea
               className="quiz-textarea"
-              value={formData.additionalInformation}
+              value={formData.description}
               readOnly
             />
           </div>
@@ -318,8 +325,8 @@ const AiQuizGenerator = () => {
             <input
               className="quiz-input"
               type="text"
-              name="topic"
-              value={formData.topic}
+              name="category"
+              value={formData.category}
               onChange={handleChange}
               placeholder="e.g., Space Exploration"
             />
@@ -341,16 +348,15 @@ const AiQuizGenerator = () => {
 
               <div className="quiz-col">
                 <label className="quiz-label">Number of Questions</label>
-                <select
+                <input
+                  type="number"
                   className="quiz-select"
                   name="numberOfQuestions"
                   value={formData.numberOfQuestions}
                   onChange={handleChange}
                 >
-                  <option value={5}>5</option>
-                  <option value={10}>10</option>
-                  <option value={15}>15</option>
-                </select>
+                  
+                </input>
               </div>
             </div>
 
@@ -363,6 +369,17 @@ const AiQuizGenerator = () => {
               onChange={handleChange}
               placeholder="e.g., 30"
             />
+
+            <label className="quiz-label">Image URL</label>
+            <input
+              className="quiz-input"
+              type="text"
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+              placeholder="e.g., https://www.aegissofttech.com/insights/ai-interview-questions-for-java/"
+            />
+
             <label className="quiz-label">Required percentage %</label>
             <input
               className="quiz-input"
@@ -378,8 +395,8 @@ const AiQuizGenerator = () => {
             </label>
             <textarea
               className="quiz-textarea"
-              name="additionalInformation"
-              value={formData.additionalInformation}
+              name="description"
+              value={formData.description}
               onChange={handleChange}
               placeholder="Any specific requirements or focus areas for the quiz"
             ></textarea>
