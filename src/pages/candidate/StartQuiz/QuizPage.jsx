@@ -1,23 +1,17 @@
+
 // import React, { useState, useRef, useEffect } from 'react';
 // import './QuizPage.css';
+// import axios from 'axios';
+// import { useParams } from 'react-router-dom';
 
-// const questions = [
-//   { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], correctAnswer: "4" },
-//   { question: "What is 3 × 3?", options: ["6", "9", "12", "15"], correctAnswer: "9" },
-//   { question: "What is the capital of France?", options: ["London", "Berlin", "Paris", "Madrid"], correctAnswer: "Paris" },
-//   { question: "Which planet is known as the Red Planet?", options: ["Venus", "Mars", "Jupiter", "Saturn"], correctAnswer: "Mars" },
-//   { question: "What is the largest mammal?", options: ["Elephant", "Blue Whale", "Giraffe", "Polar Bear"], correctAnswer: "Blue Whale" },
-//   { question: "Which language is used for web development?", options: ["Java", "C++", "Python", "JavaScript"], correctAnswer: "JavaScript" },
-//   { question: "What is the chemical symbol for gold?", options: ["Go", "Gd", "Au", "Ag"], correctAnswer: "Au" },
-//   { question: "Who painted the Mona Lisa?", options: ["Van Gogh", "Picasso", "Da Vinci", "Michelangelo"], correctAnswer: "Da Vinci" },
-//   { question: "What is the hardest natural substance?", options: ["Gold", "Iron", "Diamond", "Platinum"], correctAnswer: "Diamond" },
-//   { question: "Which country is home to the kangaroo?", options: ["South Africa", "Brazil", "Australia", "New Zealand"], correctAnswer: "Australia" }
-// ];
-
-// const TOTAL_QUIZ_TIME = 30 * 60 * 1000; // 30 minutes
-// const WARNING_TIME = 5 * 60 * 1000; // 5 minutes
 
 // const QuizPage = () => {
+//   const [QuizData,setQuizData] = useState();
+//   const [questions,setquestions] = useState([]);
+
+//   const [TOTAL_QUIZ_TIME,setTOTAL_QUIZ_TIME] = useState(30 * 60 * 1000); 
+//   const [WARNING_TIME,setWARNING_TIME] = useState(5 * 60 * 1000);
+
 //   const [started, setStarted] = useState(false);
 //   const [currentQ, setCurrentQ] = useState(0);
 //   const [userAnswers, setUserAnswers] = useState(Array(questions.length).fill(null));
@@ -25,26 +19,66 @@
 //   const [score, setScore] = useState(0);
 //   const [timeLeft, setTimeLeft] = useState(TOTAL_QUIZ_TIME);
 //   const [showWarning, setShowWarning] = useState(false);
+//   const [startTime, setStartTime] = useState(null);
+//   const [timeTaken, setTimeTaken] = useState(0);
 //   const quizRef = useRef(null);
 //   const timerRef = useRef(null);
+  
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState('');
+//   const { quizId: quizId } = useParams();
+//   const token = localStorage.getItem('token');
+
+
+//   useEffect(() => {
+//     const fetchQuizzes = async () => {
+//       try {
+//         const response = await axios.get(`http://localhost:3000/api/quiz/join/${quizId}`,
+//           {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//             'Content-Type': 'application/json',
+//           },
+//         }
+//         );
+//         console.log(response.data.quiz);
+//         console.log(response.data.quiz.timeLimit/60);
+//         setQuizData(response.data.quiz);
+//         // quizData.timeLimit = quizData.timeLimit/60;
+//         setTOTAL_QUIZ_TIME(response.data.quiz.timeLimit*1000);
+//         // setTimeTaken(response.data.quiz.timeLimit*1000);
+//         setTimeLeft(response.data.quiz.timeLimit*1000);
+
+//         setquestions(response.data.quiz.questions);
+//         setLoading(false);
+//       } catch (err) {
+//         console.error("Error fetching quiz:", err);
+//         setError("Failed to load quiz.");
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchQuizzes();
+//   }, []);
 
 //   // Fullscreen + disable shortcuts + timer
 //   useEffect(() => {
 //     if (started) {
-//       // Enter fullscreen
+//       setStartTime(Date.now());
+      
 //       setTimeout(() => {
 //         const elem = quizRef.current;
 //         if (elem.requestFullscreen) elem.requestFullscreen();
 //         else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
 //       }, 100);
 
-//       // Start timer
 //       timerRef.current = setInterval(() => {
 //         setTimeLeft(prev => {
 //           const newTime = prev - 1000;
 //           if (newTime <= 0) {
 //             clearInterval(timerRef.current);
 //             setFinished(true);
+//             setTimeTaken(TOTAL_QUIZ_TIME);
 //             return 0;
 //           }
 //           return newTime;
@@ -52,10 +86,8 @@
 //       }, 1000);
 //     }
 
-//     // Block all keyboard shortcuts
 //     const blockKeys = (e) => {
 //       if (started) {
-//         // Block function keys, Escape, Ctrl, Alt, etc.
 //         if (e.key.startsWith('F') || 
 //             e.key === 'Escape' || 
 //             e.ctrlKey || 
@@ -67,7 +99,6 @@
 //       }
 //     };
 
-//     // Block right click and other mouse tricks
 //     const blockMouse = (e) => {
 //       if (started) {
 //         e.preventDefault();
@@ -100,7 +131,12 @@
 //     if (finished) {
 //       const correct = questions.reduce((acc, q, i) => 
 //         acc + (userAnswers[i] === q.correctAnswer ? 1 : 0), 0);
+
 //       setScore(correct);
+      
+//       if (!timeTaken) {
+//         setTimeTaken(TOTAL_QUIZ_TIME - timeLeft);
+//       }
 //     }
 //   }, [finished]);
 
@@ -119,9 +155,55 @@
 //   const progress = ((currentQ + 1) / questions.length) * 100;
 
 //   const formatTime = (ms) => {
-//     const minutes = Math.floor(ms / 60000);
-//     const seconds = Math.floor((ms % 60000) / 1000);
+//     const totalSeconds = Math.floor(ms / 1000);
+//     const minutes = Math.floor(totalSeconds / 60);
+//     const seconds = totalSeconds % 60;
 //     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+//   };
+
+//   const handleFinish = async() => {
+
+//     const submission = {
+//       userId: localStorage.getItem("userId"),
+//       quizId: quizId,
+//       responses: userAnswers,
+//       score : questions.reduce((acc, q, i) => 
+//         acc + (userAnswers[i] === q.correctAnswer ? 1 : 0), 0),
+//       totalQuestions: questions.length,
+//       percentage: questions.reduce((acc, q, i) => 
+//         acc + (userAnswers[i] === q.correctAnswer ? 1 : 0), 0)/questions.length*100,
+//       startedAt: startTime,
+//       submittedAt: new Date().toISOString(),
+//       eligibility: score/questions.length*100 >= QuizData.requiredPercentage ? "Eligibile" : "Not Eligibile",
+//     }
+
+//     console.log(submission);
+
+//     try {
+//       const token = localStorage.getItem("token");
+//       const response = await axios.post(
+//         "http://localhost:3000/api/submissions/submit",
+//         submission,
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//             "Content-Type": "application/json",
+//           },
+//         }
+//       );
+
+//       console.log("✅ Submission successful:", response.data);
+//       setFinished(true);
+//       setTimeTaken(TOTAL_QUIZ_TIME - timeLeft);
+//       clearInterval(timerRef.current);
+//     } catch (error) {
+//       console.error("❌ Submission failed:", error.response?.data || error.message);
+//       alert("Failed to submit quiz. Please try again.");
+//     }
+    
+//     setFinished(true);
+//     setTimeTaken(TOTAL_QUIZ_TIME - timeLeft);
+//     clearInterval(timerRef.current);
 //   };
 
 //   return (
@@ -130,7 +212,10 @@
 //         <div className="QuizPage-start-screen">
 //           <h2>Ready to Start Quiz?</h2>
 //           <p className="QuizPage-time-info">Total time: {formatTime(TOTAL_QUIZ_TIME)}</p>
-//           <button className="QuizPage-start-btn" onClick={() => setStarted(true)}>
+//           <button className="QuizPage-start-btn" onClick={() => {
+//             setStarted(true)
+//             setStartTime(new Date().toISOString())
+//             }}>
 //             Start Quiz
 //           </button>
 //         </div>
@@ -138,7 +223,9 @@
 //         <div className="QuizPage-results-screen">
 //           <h2>Quiz Completed!</h2>
 //           <p className="QuizPage-score">Your Score: {score}/{questions.length}</p>
-//           <p className="QuizPage-time-taken">Time Taken: {formatTime(TOTAL_QUIZ_TIME - timeLeft)}</p>
+//           <p className="QuizPage-time-taken">
+//             Time Taken: {formatTime(timeTaken)} / {formatTime(TOTAL_QUIZ_TIME)}
+//           </p>
 //         </div>
 //       ) : (
 //         <>
@@ -161,7 +248,7 @@
 //             </div>
 //             <button 
 //               className="QuizPage-finish-btn" 
-//               onClick={() => setFinished(true)}
+//               onClick={handleFinish}
 //             >
 //               Finish Test
 //             </button>
@@ -175,7 +262,7 @@
 //               ></div>
 //             </div>
 //             <h4>Question {currentQ + 1}</h4>
-//             <p className="QuizPage-question-text">{questions[currentQ].question}</p>
+//             <p className="QuizPage-question-text">{questions[currentQ].questionText}</p>
 //             <div className="QuizPage-options-container">
 //               {questions[currentQ].options.map((opt, i) => (
 //                 <button
@@ -213,26 +300,20 @@
 // export default QuizPage;
 
 
+
 import React, { useState, useRef, useEffect } from 'react';
 import './QuizPage.css';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-const questions = [
-  { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], correctAnswer: "4" },
-  { question: "What is 3 × 3?", options: ["6", "9", "12", "15"], correctAnswer: "9" },
-  { question: "What is the capital of France?", options: ["London", "Berlin", "Paris", "Madrid"], correctAnswer: "Paris" },
-  { question: "Which planet is known as the Red Planet?", options: ["Venus", "Mars", "Jupiter", "Saturn"], correctAnswer: "Mars" },
-  { question: "What is the largest mammal?", options: ["Elephant", "Blue Whale", "Giraffe", "Polar Bear"], correctAnswer: "Blue Whale" },
-  { question: "Which language is used for web development?", options: ["Java", "C++", "Python", "JavaScript"], correctAnswer: "JavaScript" },
-  { question: "What is the chemical symbol for gold?", options: ["Go", "Gd", "Au", "Ag"], correctAnswer: "Au" },
-  { question: "Who painted the Mona Lisa?", options: ["Van Gogh", "Picasso", "Da Vinci", "Michelangelo"], correctAnswer: "Da Vinci" },
-  { question: "What is the hardest natural substance?", options: ["Gold", "Iron", "Diamond", "Platinum"], correctAnswer: "Diamond" },
-  { question: "Which country is home to the kangaroo?", options: ["South Africa", "Brazil", "Australia", "New Zealand"], correctAnswer: "Australia" }
-];
-
-const TOTAL_QUIZ_TIME = 30 * 60 * 1000; // 30 minutes in milliseconds
-const WARNING_TIME = 5 * 60 * 1000; // 5 minutes in milliseconds
 
 const QuizPage = () => {
+  const [QuizData,setQuizData] = useState();
+  const [questions,setquestions] = useState([]);
+
+  const [TOTAL_QUIZ_TIME,setTOTAL_QUIZ_TIME] = useState(30 * 60 * 1000); 
+  const [WARNING_TIME,setWARNING_TIME] = useState(5 * 60 * 1000);
+
   const [started, setStarted] = useState(false);
   const [currentQ, setCurrentQ] = useState(0);
   const [userAnswers, setUserAnswers] = useState(Array(questions.length).fill(null));
@@ -244,6 +325,43 @@ const QuizPage = () => {
   const [timeTaken, setTimeTaken] = useState(0);
   const quizRef = useRef(null);
   const timerRef = useRef(null);
+  
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const { quizId: quizId } = useParams();
+  const token = localStorage.getItem('token');
+
+
+  useEffect(() => {
+    const fetchQuizzes = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/quiz/join/${quizId}`,
+          {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+        );
+        console.log(response.data.quiz);
+        console.log(response.data.quiz.timeLimit/60);
+        setQuizData(response.data.quiz);
+        // quizData.timeLimit = quizData.timeLimit/60;
+        setTOTAL_QUIZ_TIME(response.data.quiz.timeLimit*1000);
+        // setTimeTaken(response.data.quiz.timeLimit*1000);
+        setTimeLeft(response.data.quiz.timeLimit*1000);
+
+        setquestions(response.data.quiz.questions);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching quiz:", err);
+        setError("Failed to load quiz.");
+        setLoading(false);
+      }
+    };
+
+    fetchQuizzes();
+  }, []);
 
   // Fullscreen + disable shortcuts + timer
   useEffect(() => {
@@ -315,6 +433,7 @@ const QuizPage = () => {
     if (finished) {
       const correct = questions.reduce((acc, q, i) => 
         acc + (userAnswers[i] === q.correctAnswer ? 1 : 0), 0);
+
       setScore(correct);
       
       if (!timeTaken) {
@@ -344,7 +463,51 @@ const QuizPage = () => {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
-  const handleFinish = () => {
+  const handleFinish = async() => {
+
+    const submission = {
+      userId: localStorage.getItem("userId"),
+      quizId: quizId,
+      responses: userAnswers.map((val,index)=>({
+        questionId : questions[index]._id,
+        selectedAnswer : val,
+        answer : questions[index].correctAnswer,
+        isCorrect : val === questions[index].correctAnswer
+      })),
+      score : questions.reduce((acc, q, i) => 
+        acc + (userAnswers[i] === q.correctAnswer ? 1 : 0), 0),
+      totalQuestions: questions.length,
+      percentage: questions.reduce((acc, q, i) => 
+        acc + (userAnswers[i] === q.correctAnswer ? 1 : 0), 0)/questions.length*100,
+      startedAt: startTime,
+      submittedAt: new Date().toISOString(),
+      eligibility: (score/questions.length*100) >= QuizData.requiredPercentage ? "Eligible" : "Not Eligible",
+    }
+
+    console.log(submission);
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "http://localhost:3000/api/submissions/submit",
+        submission,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("✅ Submission successful:", response.data);
+      setFinished(true);
+      setTimeTaken(TOTAL_QUIZ_TIME - timeLeft);
+      clearInterval(timerRef.current);
+    } catch (error) {
+      console.error("❌ Submission failed:", error.response?.data || error.message);
+      alert("Failed to submit quiz. Please try again.");
+    }
+    
     setFinished(true);
     setTimeTaken(TOTAL_QUIZ_TIME - timeLeft);
     clearInterval(timerRef.current);
@@ -356,7 +519,10 @@ const QuizPage = () => {
         <div className="QuizPage-start-screen">
           <h2>Ready to Start Quiz?</h2>
           <p className="QuizPage-time-info">Total time: {formatTime(TOTAL_QUIZ_TIME)}</p>
-          <button className="QuizPage-start-btn" onClick={() => setStarted(true)}>
+          <button className="QuizPage-start-btn" onClick={() => {
+            setStarted(true)
+            setStartTime(new Date().toISOString())
+            }}>
             Start Quiz
           </button>
         </div>
@@ -403,7 +569,7 @@ const QuizPage = () => {
               ></div>
             </div>
             <h4>Question {currentQ + 1}</h4>
-            <p className="QuizPage-question-text">{questions[currentQ].question}</p>
+            <p className="QuizPage-question-text">{questions[currentQ].questionText}</p>
             <div className="QuizPage-options-container">
               {questions[currentQ].options.map((opt, i) => (
                 <button
@@ -439,3 +605,5 @@ const QuizPage = () => {
 };
 
 export default QuizPage;
+
+

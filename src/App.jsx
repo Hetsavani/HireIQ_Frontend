@@ -28,10 +28,10 @@ function App() {
           <Route index element={<CandidateDashboard />} />
           <Route path="dashboard" element={<CandidateDashboard />} />
           <Route path="ExploreQuiz" element={<ExploreQuiz />}/>
-          <Route path="ExploreQuiz/QuizById" element={<QuizById />} />
+          <Route path="ExploreQuiz/QuizById/:quizId" element={<QuizById />} />
           {/* <Route path="quizQuestion" element={<QuizQuestion />} /> */}
           
-          <Route path="quizpage" element={<QuizPage />} />
+          <Route path="quizpage/:quizId" element={<QuizPage />} />
           <Route path="completedQuizzes" element={<CompletedQuizzes />} />
         </Route> 
 
