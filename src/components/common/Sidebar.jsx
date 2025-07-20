@@ -42,15 +42,15 @@ const Sidebar = () => {
             </NavLink>
           </li> */}
           <li className="nav-item_CS">
+
             <NavLink
               to="/candidate/completedQuizzes"
               className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
             >
-              <i className="fas fa-list nav-icon_CS" />
-              <span className="nav-text_CS">Old Quiz Results</span>
+              <i className="fas fa-list" /> Old Quiz Results
             </NavLink>
           </li>
-          <li className="nav-item_CS">
+          <li>
             <NavLink
               to="/discussions"
               className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
@@ -59,16 +59,15 @@ const Sidebar = () => {
               <span className="nav-text_CS">Quiz Discussions</span>
             </NavLink>
           </li>
-          <li className="nav-item_CS">
+          <li>
             <NavLink
               to="botConversation"
               className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
             >
-              <i className="fas fa-robot nav-icon_CS" />
-              <span className="nav-text_CS">Bot Conversation</span>
+              <i className="fas fa-comments" /> Bot Conversation
             </NavLink>
           </li>
-          <li className="nav-item_CS">
+          <li>
             <NavLink
               to="/logout"
               className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
@@ -76,7 +75,7 @@ const Sidebar = () => {
               <i className="fas fa-sign-out-alt nav-icon_CS" />
               <span className="nav-text_CS">Logout</span>
             </NavLink>
-          </li>
+          </li> 
         </ul>
       </nav>
     </div>

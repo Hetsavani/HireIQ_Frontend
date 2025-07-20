@@ -467,7 +467,7 @@ const QuizPage = () => {
 
     const submission = {
       userId: localStorage.getItem("userId"),
-      quizId: quizId,
+      quizId: QuizData._id,
       responses: userAnswers.map((val,index)=>({
         questionId : questions[index]._id,
         selectedAnswer : val,

@@ -1,48 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './CompletedQuizzes.css';
+import axios from 'axios';
 
 const CompletedQuizzes = () => {
-  const completedQuizzes = [
-    {
-      id: 1,
-      result: 'Passed',
-      difficulty: 'Hard',
-      topic: 'Advanced JavaScript Concepts',
-      date: '2023-11-15',
-      category: 'Programming',
-      totalMCQ: 20,
-      attemptedMCQ: 18,
-      totalMarks: 100,
-      gainedMarks: 85,
-      time: '45 min'
-    },
-    {
-      id: 2,
-      result: 'Failed',
-      difficulty: 'Medium',
-      topic: 'React Hooks Mastery',
-      date: '2023-11-10',
-      category: 'Web Development',
-      totalMCQ: 15,
-      attemptedMCQ: 12,
-      totalMarks: 75,
-      gainedMarks: 45,
-      time: '30 min'
-    },
-    {
-      id: 3,
-      result: 'Passed',
-      difficulty: 'Easy',
-      topic: 'CSS Fundamentals',
-      date: '2023-11-05',
-      category: 'Web Design',
-      totalMCQ: 10,
-      attemptedMCQ: 10,
-      totalMarks: 50,
-      gainedMarks: 48,
-      time: '20 min'
-    }
-  ];
+
+  const [completedQuizzes,setcompletedQuizzes] = useState([]);
+
+  useEffect(() => {
+    const fetchSubmissions = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
+
+        const response = await axios.get(`http://localhost:3000/api/submissions/user/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        setcompletedQuizzes(response.data);
+
+        console.log(response.data);
+
+      } catch (err) {
+        console.error('Failed to fetch submissions:', err);
+        // setError('Failed to load submissions.');
+      }
+    };
+
+
+    fetchSubmissions();
+  }, []);
+  
 
   return (
     <div className="cq-container" style={{ backgroundColor: '#020817' }}>
@@ -53,35 +43,44 @@ const CompletedQuizzes = () => {
       
       <div className="cq-grid">
         {completedQuizzes.map((quiz) => (
-          <div key={quiz.id} className="cq-card">
+          <div key={quiz.quizId.quizId} className="cq-card">
             <div className="cq-card-header">
-              <span className={`cq-status cq-status-${quiz.result.toLowerCase()}`}>
-                {quiz.result}
+              <span className={`cq-status cq-status-${quiz.eligibility=="Eligible" ? "passed" : "failed"}`}>
+                {quiz.eligibility=="Eligible" ? "Passed" : "Failed"}
               </span>
-              <span className={`cq-difficulty cq-difficulty-${quiz.difficulty.toLowerCase()}`}>
-                {quiz.difficulty}
+              <span className={`cq-difficulty cq-difficulty-${quiz.quizId.questions[0].difficulty}`}>
+                {quiz.quizId.questions[0].difficulty}
               </span>
             </div>
             
             <div className="cq-card-body">
-              <h3 className="cq-topic">{quiz.topic}</h3>
+              <h3 className="cq-topic">{quiz.quizId.questions[0].type}</h3>
               <div className="cq-meta">
-                <span className="cq-date">{quiz.date}</span>
-                <span className="cq-category">{quiz.category}</span>
+                <span className="cq-date">
+                  {new Date(quiz.quizId.createdAt).toLocaleString('en-IN', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true,
+                  })}
+                </span>
+                {/* <span className="cq-category">{quiz.category}</span> */}
               </div>
               
               <div className="cq-stats">
                 <div className="cq-stat-item">
                   <span className="cq-stat-label">MCQs</span>
-                  <span className="cq-stat-value">{quiz.attemptedMCQ}/{quiz.totalMCQ}</span>
+                  <span className="cq-stat-value">{quiz.score}/{quiz.quizId.questions.length}</span>
                 </div>
                 <div className="cq-stat-item">
                   <span className="cq-stat-label">Marks</span>
-                  <span className="cq-stat-value">{quiz.gainedMarks}/{quiz.totalMarks}</span>
+                  <span className="cq-stat-value">{quiz.score}/{quiz.quizId.questions.length}</span>
                 </div>
                 <div className="cq-stat-item">
                   <span className="cq-stat-label">Time</span>
-                  <span className="cq-stat-value">{quiz.time}</span>
+                  <span className="cq-stat-value">{quiz.quizId.timeLimit/60}</span>
                 </div>
               </div>
               
@@ -89,8 +88,8 @@ const CompletedQuizzes = () => {
                 <div 
                   className="cq-progress-bar" 
                   style={{ 
-                    width: `${(quiz.gainedMarks / quiz.totalMarks) * 100}%`,
-                    backgroundColor: quiz.result === 'Passed' ? '#6366F1' : '#F43F5E'
+                    width: `${(quiz.score / quiz.quizId.questions.length) * 100}%`,
+                    backgroundColor: quiz.eligibility=="Eligible" ? '#6366F1' : '#F43F5E'
                   }}
                 ></div>
               </div>
