@@ -32,7 +32,7 @@ const Sidebar = () => {
               <span className="nav-text_CS">Explore Quizzes</span>
             </NavLink>
           </li>
-          <li className="nav-item_CS">
+          {/* <li className="nav-item_CS">
             <NavLink
               to="/leaderboard"
               className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
@@ -40,7 +40,7 @@ const Sidebar = () => {
               <i className="fas fa-list-ol nav-icon_CS" />
               <span className="nav-text_CS">Leaderboard</span>
             </NavLink>
-          </li>
+          </li> */}
           <li className="nav-item_CS">
             <NavLink
               to="/candidate/completedQuizzes"
