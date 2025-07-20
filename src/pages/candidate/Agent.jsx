@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { vapi } from "./vapi.sdk"; // 👈 Import the shared instance
+// import "./Ag.css";
+import "./Agent.css";
 
 const CallStatus = {
   INACTIVE: "INACTIVE",
@@ -92,26 +94,97 @@ const Agent = ({
     vapiRef.current?.stop();
   };
 
-  return (
-    <div className="p-4 text-center">
-      <h2>AI Interviewer</h2>
-      <p>{userName}</p>
+  // Get last 6 messages for conversation history
+  const recentMessages = messages.slice(-6);
 
-      <div className="my-4">
-        {lastMessage && (
-          <p className="text-gray-700 border p-2 rounded shadow-md">{lastMessage}</p>
+  return (
+    <div className="interview-container_CB">
+      <div className="interview-header_CB">
+        <div className="interviewer-avatar_CB">
+          <div className="avatar-circle_CB">
+            <span className="avatar-icon_CB">🤖</span>
+          </div>
+          {isSpeaking && (
+            <div className="speaking-indicator_CB">
+              <div className="wave_CB wave1_CB"></div>
+              <div className="wave_CB wave2_CB"></div>
+              <div className="wave_CB wave3_CB"></div>
+              <div className="wave_CB wave4_CB"></div>
+            </div>
+          )}
+        </div>
+        
+        <div className="header-content_CB">
+          <h2 className="interview-title_CB">AI Mock Interviewer</h2>
+          <p className="candidate-name_CB">Welcome, {userName}</p>
+          <div className="status-indicator_CB">
+            <span className={`status-dot_CB ${callStatus.toLowerCase()}_CB`}></span>
+            <span className="status-text_CB">{callStatus}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="conversation-area_CB">
+        {recentMessages.length > 0 ? (
+          <div className="conversation-history_CB">
+            <h3 className="conversation-title_CB">Recent Conversation</h3>
+            <div className="messages-container_CB">
+              {recentMessages.map((message, index) => (
+                <div 
+                  key={index} 
+                  className={`message-bubble_CB ${message.role === 'assistant' ? 'bot-message_CB' : 'user-message_CB'}`}
+                >
+                  <div className="message-header_CB">
+                    <span className="message-sender_CB">
+                      {message.role === 'assistant' ? '🤖 AI Interviewer' : '👤 You'}
+                    </span>
+                  </div>
+                  <div className="message-content_CB">
+                    {message.content}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="empty-state_CB">
+            <div className="empty-icon_CB">💭</div>
+            <p className="empty-text_CB">Start your mock interview to begin the conversation</p>
+          </div>
         )}
       </div>
 
-      {callStatus !== CallStatus.ACTIVE ? (
-        <button onClick={handleCall} className="px-6 py-2 bg-green-600 text-white rounded">
-          {callStatus === CallStatus.CONNECTING ? "Connecting..." : "Start Call"}
-        </button>
-      ) : (
-        <button onClick={handleDisconnect} className="px-6 py-2 bg-red-600 text-white rounded">
-          End Call
-        </button>
-      )}
+      <div className="control-panel_CB">
+        {callStatus !== CallStatus.ACTIVE ? (
+          <button 
+            onClick={handleCall} 
+            className="call-button_CB start-call_CB"
+            disabled={callStatus === CallStatus.CONNECTING}
+          >
+            <span className="button-icon_CB">
+              {callStatus === CallStatus.CONNECTING ? "⏳" : "🎙️"}
+            </span>
+            <span className="button-text_CB">
+              {callStatus === CallStatus.CONNECTING ? "Connecting..." : "Start Interview"}
+            </span>
+          </button>
+        ) : (
+          <button 
+            onClick={handleDisconnect} 
+            className="call-button_CB end-call_CB"
+          >
+            <span className="button-icon_CB">📞</span>
+            <span className="button-text_CB">End Interview</span>
+          </button>
+        )}
+        
+        {callStatus === CallStatus.ACTIVE && (
+          <div className="live-indicator_CB">
+            <div className="live-dot_CB"></div>
+            <span className="live-text_CB">Live Interview</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
