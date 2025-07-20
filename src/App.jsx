@@ -31,8 +31,7 @@ function App() {
           <Route path="dashboard" element={<CandidateDashboard />} />
           <Route path="ExploreQuiz" element={<ExploreQuiz />}/>
 
-          <Route path="botConversation" element={<BotConversation />} />
-          <Route path="vapi" element={<Agent />} />
+          <Route path="botConversation" element={<Agent />} />
 
           <Route path="ExploreQuiz/QuizById/:quizId" element={<QuizById />} />
 

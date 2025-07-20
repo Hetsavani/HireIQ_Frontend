@@ -24,7 +24,8 @@ const AdminSidebar = () => {
             <i className="bi bi-clipboard-check me-2"></i> View Submissions
           </NavLink>
         </li>
-{/* 
+        
+      {/* 
          <li className="nav-item">
           <NavLink to="/admin/leaderboard" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
             <i className="bi bi-clipboard-check me-2"></i> LeaderBoard

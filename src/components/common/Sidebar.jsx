@@ -29,46 +29,46 @@ const Sidebar = () => {
               <i className="fas fa-compass" /> Explore Quizzes
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/leaderboard"
-              className={({ isActive }) => (isActive ? 'active' : '')}
-            >
-              <i className="fas fa-list-ol" /> Leaderboard
-            </NavLink>
-          </li>
+            {/* <li>
+              <NavLink
+                to="/leaderboard"
+                className={({ isActive }) => (isActive ? 'active' : '')}
+              >
+                <i className="fas fa-list-ol" /> Leaderboard
+              </NavLink>
+            </li> */}
           <li>
             <NavLink
               to="/candidate/completedQuizzes"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
-              <i className="fas fa-list" /> Old Quiz Results
+              <i className="fas fa-list" /> Quiz Results
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink
               to="/discussions"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
               <i className="fas fa-comments" /> Quiz Discussions
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink
               to="botConversation"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
-              <i className="fas fa-comments" /> Bot Conversation
+              <i className="fas fa-comments" /> Evalute Your Self
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink
               to="/logout"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
               <i className="fas fa-sign-out-alt" /> Logout
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>
