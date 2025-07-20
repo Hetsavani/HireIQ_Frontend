@@ -44,7 +44,7 @@ function App() {
           <Route path="completedQuizzes" element={<CompletedQuizzes />} />
         </Route> 
 
-        <Route path="/login" element={<LoginNew />}></Route>
+        <Route path="/" element={<LoginNew />}></Route>
         <Route path="/ForgotPassword" element={<ForgotPassword />}></Route>
 
         <Route path="/admin" element={<AdminLayout />}>
