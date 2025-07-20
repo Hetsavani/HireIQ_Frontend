@@ -33,7 +33,7 @@ function App() {
           <Route path="dashboard" element={<CandidateDashboard />} />
           <Route path="ExploreQuiz" element={<ExploreQuiz />}/>
           <Route path="profile" element={<Profile />} />
-          <Route path="botConversation" element={<BotConversation />} />
+          <Route path="botConversation" element={<Agent />} />
           <Route path="vapi" element={<Agent />} />
 
           <Route path="ExploreQuiz/QuizById/:quizId" element={<QuizById />} />
@@ -55,6 +55,7 @@ function App() {
           {/* <Route path="view-submissions" element={<ViewSubmission />} /> */}
           <Route path="ai-quiz-generator" element={<AiQuizGenerator />} />
           <Route path="quiz-result" element={<QuizResult />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>
