@@ -3,53 +3,54 @@ import './CandidateDashboard.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 const UpperPart_CD = () => {
     return (
         <div className="upper-part_CD">
             <h1 className="upper-title_CD">Your Quiz Adventure</h1>
-            <h2 className="upper-subtitle_CD">Starts Here: <br /> Play, Share, Earn!</h2>
-            <p className="upper-description_CD">Build engaging quizzes, challenge others, and earn rewards <br />for your knowledge</p>
+            <h2 className="upper-subtitle_CD">Starts Here <br /> Play, Share, Learn!</h2>
+            <p className="upper-description_CD">Build engaging quizzes, challenge others, and learn new things <br />for your knowledge</p>
             <div className="upper-buttons_CD">
-                <button className="create-btn_CD">Create Quiz</button>
-                <button className="join-btn_CD">Join Contest</button>
+                {/* <button className="create-btn_CD">Create Quiz</button> */}
+                <NavLink to={"botConversation"} className="join-btn_CD" style={{textDecoration:"none"}}>Join Contest</NavLink>
             </div>
         </div>
     );
 };
 
-const QuizCategory_CD = () => {
-    return (
-        <div className="categories-container_CD">
-            <h3 className="categories-title_CD">Quiz Categories</h3>
+// const QuizCategory_CD = () => {
+//     return (
+//         <div className="categories-container_CD">
+//             <h3 className="categories-title_CD">Quiz Categories</h3>
 
-            <div className="carousel-container_CD">
-                <div className="carousel-track_CD">
-                    {[
-                        { name: 'Movies', image: 'src/assets/img/quizCategory/code.jpeg' },
-                        { name: 'Science', image: 'src/assets/img/quizCategory/html.jpeg' },
-                        { name: 'History', image: 'src/assets/img/quizCategory/JAVA.jpeg' },
-                        { name: 'Sports', image: 'src/assets/img/quizCategory/react.jpeg' },
-                        { name: 'Music', image: '/_next/static/media/music.jpg' },
-                        { name: 'Technology', image: '/_next/static/media/tech.jpg' },
-                        { name: 'Geography', image: '/_next/static/media/geo.jpg' },
-                        { name: 'Literature', image: '/_next/static/media/lit.jpg' },
-                    ].map((category, index) => (
-                        <div 
-                            className="category-card_CD" 
-                            key={index} 
-                            style={{ backgroundImage: `url(${category.image})` }}
-                        >
-                            <div className="card-overlay_CD">
-                                <h4 className="category-name_CD">{category.name}</h4>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-};
+//             <div className="carousel-container_CD">
+//                 <div className="carousel-track_CD">
+//                     {[
+//                         { name: 'Movies', image: 'src/assets/img/quizCategory/code.jpeg' },
+//                         { name: 'Science', image: 'src/assets/img/quizCategory/html.jpeg' },
+//                         { name: 'History', image: 'src/assets/img/quizCategory/JAVA.jpeg' },
+//                         { name: 'Sports', image: 'src/assets/img/quizCategory/react.jpeg' },
+//                         { name: 'Music', image: '/_next/static/media/music.jpg' },
+//                         { name: 'Technology', image: '/_next/static/media/tech.jpg' },
+//                         { name: 'Geography', image: '/_next/static/media/geo.jpg' },
+//                         { name: 'Literature', image: '/_next/static/media/lit.jpg' },
+//                     ].map((category, index) => (
+//                         <div 
+//                             className="category-card_CD" 
+//                             key={index} 
+//                             style={{ backgroundImage: `url(${category.image})` }}
+//                         >
+//                             <div className="card-overlay_CD">
+//                                 <h4 className="category-name_CD">{category.name}</h4>
+//                             </div>
+//                         </div>
+//                     ))}
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// };
 
 const LatestQuiz_CD = () => {
 
@@ -212,39 +213,69 @@ const LatestQuiz_CD = () => {
 };
  
 const OptionalCard_CD = () => {
-    const quizzes = [
-        // { 
-        //     quizId: 1, 
-        //     title: 'Advanced JavaScript', 
-        //     // category: 'Programming', 
-        //     // difficulty: 'Hard', 
-        //     timeLimit: '45 min', 
-        //     // date: '2025-07-18', 
-        //     // image: 'src/assets/img/quizCategory/code.jpeg' 
-        //     requiredPercentage : 10,
-        //     description: "",
-        //     createdBy: "",
-        //     questions: []
-        // },
-        { 
-            id: 2, 
-            title: 'React Patterns', 
-            category: 'Web Dev', 
-            difficulty: 'Medium', 
-            time: '35 min', 
-            date: '2025-07-17', 
-            image: 'src/assets/img/quizCategory/react.jpeg' 
-        },
-        { 
-            id: 3, 
-            title: 'CSS Mastery', 
-            category: 'Web Design', 
-            difficulty: 'Easy', 
-            time: '25 min', 
-            date: '2025-07-16', 
-            image: 'src/assets/img/quizCategory/html.jpeg' 
-        },
-    ];
+    // const quizzes = [
+    //     // { 
+    //     //     quizId: 1, 
+    //     //     title: 'Advanced JavaScript', 
+    //     //     // category: 'Programming', 
+    //     //     // difficulty: 'Hard', 
+    //     //     timeLimit: '45 min', 
+    //     //     // date: '2025-07-18', 
+    //     //     // image: 'src/assets/img/quizCategory/code.jpeg' 
+    //     //     requiredPercentage : 10,
+    //     //     description: "",
+    //     //     createdBy: "",
+    //     //     questions: []
+    //     // },
+    //     { 
+    //         id: 2, 
+    //         title: 'React Patterns', 
+    //         category: 'Web Dev', 
+    //         difficulty: 'Medium', 
+    //         time: '35 min', 
+    //         date: '2025-07-17', 
+    //         image: 'src/assets/img/quizCategory/react.jpeg' 
+    //     },
+    //     { 
+    //         id: 3, 
+    //         title: 'CSS Mastery', 
+    //         category: 'Web Design', 
+    //         difficulty: 'Easy', 
+    //         time: '25 min', 
+    //         date: '2025-07-16', 
+    //         image: 'src/assets/img/quizCategory/html.jpeg' 
+    //     },
+    // ];
+
+    const [quizzes, setQuizzes] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        const fetchQuizzes = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const res = await axios.get('http://localhost:3000/api/quiz/quizzes', {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    }
+                });
+                console.log(res.data);
+                setQuizzes(res.data || []); // backend must return `quizzes` array
+            } catch (err) {
+                console.error("Failed to fetch quizzes:", err);
+                setError("Failed to load quizzes.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchQuizzes();
+    }, []);
+
+    if (loading) return <p>Loading quizzes...</p>;
+    if (error) return <p>{error}</p>;
 
     return (
         <section className="featured-quizzes_CD">
@@ -255,16 +286,15 @@ const OptionalCard_CD = () => {
             
             <div className="featured-grid_CD">
                 {quizzes.map((quiz) => (
-                    <article key={quiz.id} className="featured-card_CD">
+                    <article key={quiz._id} className="featured-card_CD">
                         <div className="featured-media_CD">
                             <img 
-                                // src={quiz.image} 
-                                src = ""
+                                src={quiz.image} 
                                 alt={quiz.title} 
                                 className="featured-image_CD" 
                                 loading="lazy"
                             />
-                            <span className={`difficulty-badge_CD difficulty-${quiz.difficulty.toLowerCase()}_CD`}>
+                            <span className={`difficulty-badge_CD difficulty-${quiz.difficulty?.toLowerCase()}_CD`}>
                                 {quiz.difficulty}
                             </span>
                         </div>
@@ -277,7 +307,17 @@ const OptionalCard_CD = () => {
                                         <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" strokeWidth="2"/>
                                         <polyline points="12 6 12 12 16 14" stroke="currentColor" fill="none" strokeWidth="2"/>
                                     </svg>
-                                    {quiz.time}
+                                    <span className="cq-date">
+                                    {new Date(quiz.createdAt).toLocaleString('en-IN', {
+                                        day: '2-digit',
+                                        month: 'long',
+                                        year: 'numeric',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                        hour12: true,
+                                    })}
+                                    </span>
+
                                 </span>
                             </div>
                             
@@ -291,10 +331,14 @@ const OptionalCard_CD = () => {
                                         <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="2"/>
                                         <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="2"/>
                                     </svg>
-                                    {quiz.date}
+                                    {new Date(quiz.createdAt).toLocaleString('en-IN', {
+                                        day: '2-digit',
+                                        month: 'long',
+                                        year: 'numeric'
+                                    })}
                                 </time>
                                 <a 
-                                    href={`/quiz/${quiz.id}`} 
+                                    href={`/quiz/${quiz.quizId}`} 
                                     className="featured-action_CD"
                                     aria-label={`Start ${quiz.title} quiz`}
                                 >
@@ -316,8 +360,8 @@ const CandidateDashboard= () => {
     return (
         <div className="dashboard-container_CD">
             <UpperPart_CD />
-            <QuizCategory_CD />
-            <LatestQuiz_CD />
+            {/* <QuizCategory_CD /> */}
+            {/* <LatestQuiz_CD /> */}
             <OptionalCard_CD />
         </div>
     );
