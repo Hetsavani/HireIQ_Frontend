@@ -73,7 +73,7 @@ const Sidebar = () => {
               <i className="fas fa-sign-out-alt nav-icon_CS" />
               <span className="nav-text_CS">Logout</span>
             </NavLink>
-          </li> */}
+          </li> 
         </ul>
       </nav>
     </div>
