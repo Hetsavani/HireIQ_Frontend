@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import './ExploreQuize.css';
-import { Line } from 'recharts';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import './ExploreQuize.css';
 
 const ExploreQuiz = () => {
+    const [quizzes, setQuizzes] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-  const [quizzes, setQuizzes] = useState([]);
-
-  useEffect(() => {
+    useEffect(() => {
         const fetchQuizzes = async () => {
+            setLoading(true);
             try {
                 const token = localStorage.getItem('token');
                 const res = await axios.get('http://localhost:3000/api/quiz/quizzes', {
@@ -18,96 +19,75 @@ const ExploreQuiz = () => {
                         "Content-Type": "application/json",
                     }
                 });
-                console.log(res.data);
-                setQuizzes(res.data || []); // backend must return `quizzes` array
+                setQuizzes(res.data || []);
             } catch (err) {
                 console.error("Failed to fetch quizzes:", err);
                 setError("Failed to load quizzes.");
             } finally {
-                // setLoading(false);
+                setLoading(false);
             }
         };
 
         fetchQuizzes();
     }, []);
 
-  // const quizzes = [
-  //   { title: "Science Quiz: Space Exploration", image: '/src/assets/img/quizCategory/code.jpeg', category: "Entertainment", host: "Alex Smith", rating: 4.9, reward: 10.00, players: "2.5k", joined: 82, spots: "547", daysLeft: "2", isHot: true },
-  //   { title: "World Geography Challenge", image: "/src/assets/img/quizCategory/code.jpeg", category: "Geography", host: "Alex Smith", rating: 4.8, reward: 7.50, players: "1.9k", joined: 94, spots: "128", isEditorsChoice: true },
-  //   { title: "Brain Teasers & Logic Puzzles", image: "/src/assets/img/quizCategory/code.jpeg", category: "Puzzles", host: "Alex Smith", rating: 4.7, reward: 8.00, players: "3.2k", joined: 65, spots: "1759", daysLeft: "24h", isTrending: true },
-  //   { title: "History's Greatest Mysteries", image: "/src/assets/img/quizCategory/google.jpeg", category: "History", host: "Alex Smith", rating: 4.9, reward: 6.50, players: "1.6k", joined: 98, spots: "37", isTopRated: true },
-  //   { title: "Pop Culture Trivia", image: "/src/assets/img/quizCategory/google.jpeg", category: "Entertainment", host: "Jamie Lee", rating: 4.6, reward: 5.00, players: "3.8k", joined: 72, spots: "892", daysLeft: "5", isTrending: true },
-  //   { title: "Math Olympiad Challenge", image: "/src/assets/img/quizCategory/code.jpeg", category: "Mathematics", host: "Dr. Alan Turing", rating: 4.9, reward: 15.00, players: "1.2k", joined: 88, spots: "215", isEditorsChoice: true },
-  // ];
+    if (loading) {
+        return <div className="loading_EQ">Loading quizzes...</div>;
+    }
 
-  return (
-    <div className="explore-quizzes">
-      <h2 className="section-title">Explore Quizzes</h2>
-      <div className="quiz-grid1">
-        {quizzes.map((quiz, index) => (
-          <div key={index} className="quiz-card1">
-            <div className="quiz-image-container">
-              <img src={quiz.image} alt={quiz.title} className="quiz-image" />
-              <div className="image-overlay">
-                {/* {quiz.daysLeft && <span className="days-left">{quiz.daysLeft} days left</span>} */}
-                {/* <span className="category-badge" >{quiz.category}</span> */}
-              </div>
-              <div className="quiz-badges">
-                {quiz.isHot && <span className="badge hot">Hot</span>}
-                {quiz.isEditorsChoice && <span className="badge editors-choice">Editor's Choice</span>}
-                {quiz.isTrending && <span className="badge trending">Trending</span>}
-                {quiz.isTopRated && <span className="badge top-rated">Top Rated</span>}
-              </div>
+    if (error) {
+        return <div className="error_EQ">Error: {error}</div>;
+    }
+
+    return (
+        <div className="explore-quizzes_EQ">
+            <h2 className="section-title_EQ">Explore Quizzes</h2>
+            <div className="quiz-grid_EQ">
+                {quizzes.map((quiz, index) => (
+                    <div key={index} className="quiz-card_EQ">
+                        <div className="quiz-image-container_EQ">
+                            <img src={quiz.image} alt={quiz.title} className="quiz-image_EQ" />
+                            <div className="quiz-badges_EQ">
+                                {quiz.isHot && <span className="badge_EQ hot_EQ">Hot</span>}
+                                {quiz.isEditorsChoice && <span className="badge_EQ editors-choice_EQ">Editor's Choice</span>}
+                                {quiz.isTrending && <span className="badge_EQ trending_EQ">Trending</span>}
+                                {quiz.isTopRated && <span className="badge_EQ top-rated_EQ">Top Rated</span>}
+                            </div>
+                        </div>
+
+                        <div className="quiz-content_EQ">
+                            <h3 className="quiz-title_EQ">{quiz.title}</h3>
+
+                            <div className="host-info_EQ">
+                                <span className="host-label_EQ">Host:</span>
+                                <span className="host-name_EQ">{quiz.createdBy?.name}</span>
+                            </div>
+
+                            <div className="host-info_EQ">
+                                <span className="host-label_EQ">Topic:</span>
+                                <span className="host-name_EQ">{quiz.topic}</span>
+                            </div>
+                            <div className="host-info_EQ">
+                                <span className="host-label_EQ">Created:</span>
+                                <span className="host-name_EQ">{new Date(quiz.createdAt).toLocaleDateString()}</span>
+                            </div>
+
+                            <p className="quiz-description_EQ">{quiz.description}</p>
+
+                            <div className="difficulty-level_EQ">
+                                <span className="difficulty-label_EQ">Difficulty:</span>
+                                <span className="difficulty-value_EQ">{quiz.difficulty}</span>
+                            </div>
+
+                            <NavLink className="play-button_EQ" to={`QuizById/${quiz.quizId}`}>
+                                Play Now
+                            </NavLink>
+                        </div>
+                    </div>
+                ))}
             </div>
-            
-            <div className="quiz-content">
-              <h3 className="quiz-title">{quiz.title}</h3>
-              
-              <div className="host-info">
-                <span className="host-label">Host:</span>
-                <span className="host-name">{quiz.createdBy?.name}</span>
-              </div>
-              
-              {/* <div className="stats-row">
-                <div className="rating">
-                  <span className="star-icon">★</span>
-                  <span>{quiz.rating}</span>
-                </div>
-                <div className="reward">
-                  <span className="reward-icon">💰</span>
-                  <span>${quiz.reward}</span>
-                </div>
-              </div> */}
-              
-              {/* <div className="progress-container">
-                <div className="progress-info">
-                  <span>{quiz.joined}% filled</span>
-                  <span>{quiz.spots} spots left</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: `${quiz.joined}%` }}></div>
-                </div>
-              </div> */}
-              
-              <div className="players-info">
-                <span>{quiz.description}</span>
-              </div> 
-              
-              {/* <button className="play-button" >
-                Play Now
-                <span className="button-icon">→</span>
-              </button> */}
-
-              <NavLink className="play-button" to={`QuizById/${quiz.quizId}`}>
-                Play Now
-              </NavLink>
-
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+        </div>
+    );
 };
 
 export default ExploreQuiz;

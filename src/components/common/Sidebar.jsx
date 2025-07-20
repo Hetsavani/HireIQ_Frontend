@@ -47,7 +47,7 @@ const Sidebar = () => {
               to="/candidate/completedQuizzes"
               className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
             >
-              <i className="fas fa-list" /> Old Quiz Results
+              <i className="fas fa-list"/> Old Quiz Results
             </NavLink>
           </li>
           <li>
