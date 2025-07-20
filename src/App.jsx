@@ -20,6 +20,7 @@ import QuizResult from './pages/admin/QuizResult';
 import Leaderboard_form from './pages/admin/Leaderboard_form';
 import BotConversation from './pages/candidate/BotConversation';
 import Agent from './pages/candidate/Agent';
+import Profile from './pages/candidate/profile';
 
 
 function App() {
@@ -31,8 +32,9 @@ function App() {
           <Route index element={<CandidateDashboard />} />
           <Route path="dashboard" element={<CandidateDashboard />} />
           <Route path="ExploreQuiz" element={<ExploreQuiz />}/>
-
+          <Route path="profile" element={<Profile />} />
           <Route path="botConversation" element={<Agent />} />
+          <Route path="vapi" element={<Agent />} />
 
           <Route path="ExploreQuiz/QuizById/:quizId" element={<QuizById />} />
 
@@ -42,7 +44,7 @@ function App() {
           <Route path="completedQuizzes" element={<CompletedQuizzes />} />
         </Route> 
 
-        <Route path="/login" element={<LoginNew />}></Route>
+        <Route path="/" element={<LoginNew />}></Route>
         <Route path="/ForgotPassword" element={<ForgotPassword />}></Route>
 
         <Route path="/admin" element={<AdminLayout />}>
@@ -53,6 +55,7 @@ function App() {
           {/* <Route path="view-submissions" element={<ViewSubmission />} /> */}
           <Route path="ai-quiz-generator" element={<AiQuizGenerator />} />
           <Route path="quiz-result" element={<QuizResult />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>

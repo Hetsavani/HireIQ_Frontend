@@ -47,10 +47,10 @@ const Sidebar = () => {
               to="/candidate/completedQuizzes"
               className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
             >
-              <i className="fas fa-list"/> Old Quiz Results
+              <i className="fas fa-list nav-icon_CS" /> Old Quiz Results
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink
               to="/discussions"
               className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
@@ -58,13 +58,23 @@ const Sidebar = () => {
               <i className="fas fa-comments nav-icon_CS" />
               <span className="nav-text_CS">Quiz Discussions</span>
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink
               to="botConversation"
               className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
             >
-              <i className="fas fa-comments" /> Bot Conversation
+              <i className="fas fa-comments nav-icon_CS" />
+              <span className="nav-text_CS"> Bot Conversation</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="profile"
+              className={({ isActive }) => `nav-link_CS ${isActive ? 'active_CS' : ''}`}
+            >
+              <i className="fas fa-user nav-icon_CS" />  
+              <span className="nav-text_CS"> Profile</span>
             </NavLink>
           </li>
           <li>
