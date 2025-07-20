@@ -69,7 +69,7 @@ import { useNavigate } from 'react-router-dom';
 const LoginNew = () => {
   const [isRightPanelActive, setIsRightPanelActive] = useState(false);
   const nav = useNavigate()
-  const [loginData, setLoginData] = useState({ email: '', password: '', role: 'admin' });
+  const [loginData, setLoginData] = useState({ email: '', password: ''});
   const [registerData, setRegisterData] = useState({
     name: '',
     email: '',
@@ -86,7 +86,9 @@ const LoginNew = () => {
       const response = await axios.post('http://localhost:3000/api/auth/login', loginData);
       console.log('Login Success:', response.data);
       localStorage.setItem('token', response.data.token);
-
+      localStorage.setItem('userId', response.data.user.id);
+      localStorage.setItem('email', response.data.user.email);
+      localStorage.setItem('name', response.data.user.name);
       console.log("login");
 
 
