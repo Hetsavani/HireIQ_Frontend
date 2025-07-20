@@ -17,6 +17,7 @@ import CreateQuiz from './pages/admin/CreateQuiz';
 import ViewSubmission from './pages/admin/ViewSubmissions';
 import AiQuizGenerator from './pages/admin/AiQuizGenerator';
 import QuizResult from './pages/admin/QuizResult';
+import Leaderboard_form from './pages/admin/Leaderboard_form';
 
 
 function App() {
@@ -41,7 +42,9 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="create-quiz" element={<CreateQuiz />} />
-          <Route path="view-submissions" element={<ViewSubmission />} />
+          <Route path="leaderboard" element={<Leaderboard_form />} />
+          <Route path="leaderboard/view-submissions" element={<ViewSubmission />} />
+          {/* <Route path="view-submissions" element={<ViewSubmission />} /> */}
           <Route path="ai-quiz-generator" element={<AiQuizGenerator />} />
           <Route path="quiz-result" element={<QuizResult />} />
         </Route>
