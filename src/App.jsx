@@ -17,6 +17,8 @@ import CreateQuiz from './pages/admin/CreateQuiz';
 import ViewSubmission from './pages/admin/ViewSubmissions';
 import AiQuizGenerator from './pages/admin/AiQuizGenerator';
 import QuizResult from './pages/admin/QuizResult';
+import BotConversation from './pages/candidate/BotConversation';
+import Agent from './pages/candidate/Agent';
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           <Route path="dashboard" element={<CandidateDashboard />} />
           <Route path="ExploreQuiz" element={<ExploreQuiz />}/>
           <Route path="ExploreQuiz/QuizById" element={<QuizById />} />
+          <Route path="botConversation" element={<BotConversation />} />
+          <Route path="vapi" element={<Agent />} />
           {/* <Route path="quizQuestion" element={<QuizQuestion />} /> */}
           
           <Route path="quizpage" element={<QuizPage />} />
